@@ -7,10 +7,24 @@ var validateEmail = function(email) {
     return re.test(email)
 };
 
+var validateMobile = function(mobile) {
+  var re = /^\+?[0-9]+[0-9\-]+[0-9]$/;
+  return re.test(mobile)
+};
+
 var userSchema = new Schema({
 
-  full_name: { type: String,  required: [true, 'Full name must be provided'] },
+  firstname: { type: String,  required: [true, 'first name  must be provided'] },
+  lastname: { type: String,  required: [true, 'last name must be provided'] },
+  mobile:    { 
+    
+    type: String,     
 
+    Required:  'mobile number cannot be left blank.',
+    validate: [validateMobile, 'Please fill a valid mobile number'],
+         match: [/^\+?[0-9]+[0-9\-]+[0-9]$/, 'Please fill a valid mobile number'],
+    index: {unique: true, dropDups: true}
+    },
   email:    { 
     
     type: String,     
@@ -23,12 +37,9 @@ var userSchema = new Schema({
 
   password: { type: String , required: [true,  'Password cannot be left blank']},
 
-  dob: { type: Date , required: [true, 'Date of birth must be provided']},
+  username: { type: Date , required: [true, 'User name must be provided']},
 
-  country: { type: String , required: [true, 'Country cannot be left blank.']},
-
-  gender: { type: String , required: [true, 'Gender must be provided']},
-
+  provider: { type: String , required: [true, 'provider cannot be left blank.']},
 
 });
 

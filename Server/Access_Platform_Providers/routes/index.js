@@ -16,9 +16,22 @@ router.get('/', function(req, res, next) {
 
 router.post('/register',[ 
    
-  check('full_name','Name cannot be left blank')
-  .isLength({ min: 1 }),
- 
+  check('firstname')
+  .isLength({ min: 1 })
+  .withMessage("First name cannot be left blank")
+  .isAlpha()
+  .withMessage("First Nmae should only contains Alphabets"),
+
+  check('lastname')
+  .isLength({ min: 1 })
+  .withMessage("last name cannot be left blank")
+  .isAlpha()
+  .withMessage("last Nmae should only contains Alphabets"),
+
+  check('mobile')
+  .matches(/^\+?[0-9]+[0-9\-]+[0-9]$/)
+  .withMessage("please enter a valid mobile number"),
+
   check('email')
   .isEmail().withMessage('Please enter a valid email address')
   .trim()
@@ -41,13 +54,10 @@ router.post('/register',[
     }
 }),
 
-check('gender','Please select gender')
+check('username','username cannot be left blank')
   .isLength({ min: 1 }),
 
-  check('dob','Date of birth cannot be left blank')
-  .isLength({ min: 1 }),
-  
-  check('country','Country cannot be left blank')
+  check('provider','Provider cannot be left blank')
   .isLength({ min: 1 }),
   
   check('terms','Please accept our terms and conditions').equals('yes'),
@@ -61,7 +71,6 @@ check('gender','Please select gender')
      res.json({status : "error", message : errors.array()});
 
   } else {
-    console.log("i am here");
     usercontroller.AddUser(req, res);
 
   

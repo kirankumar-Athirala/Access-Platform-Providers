@@ -13,12 +13,13 @@ const AddUser = (req, res) => {
       encpassword = hmac.digest("hex");
     }
     var document = {
-        full_name:   req.body.full_name, 
+        firstname:   req.body.firstname, 
+        lastname:   req.body.lastname, 
+        mobile:   req.body.mobile, 
         email:       req.body.email, 
+        username:   req.body.username, 
         password:    encpassword, 
-        dob:         req.body.dob, 
-        country:     req.body.country, 
-        gender:      req.body.gender,
+        provider:      req.body.gender,
       };
     
     var user = new User(document); 
