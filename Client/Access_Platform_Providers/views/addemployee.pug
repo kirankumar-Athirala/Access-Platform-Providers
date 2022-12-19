@@ -1,0 +1,48 @@
+extends layout
+
+block content
+   .container
+      
+      h2.text-center.top-buffer Add New Employee
+      form.form-horizontal(role="form", method="post")
+        .form-group
+          .alert.alert-danger(role='alert', id="msgDiv")
+
+        .form-group
+          label.col-sm-6.control-label(for="providername") 
+           strong Provider Name
+          .col-sm-9
+            input#providername.form-control(type="text" placeholder="Provider Name" autofocus="" value="")
+        .form-group
+          label.col-sm-6.control-label(for="contactperson") 
+           strong Contact Person
+          .col-sm-9
+            input#CPerson.form-control(type="text" placeholder="Contact Person")
+        .form-group
+          label.col-sm-6.control-label(for="External Person") 
+           strong External Person
+          .col-sm-9
+            input#Eperson.form-control(type="Text" placeholder="External Person")
+            .form-group
+          label.col-sm-3.control-label(for="Daily Rates") 
+           strong Daily Rates
+          .col-sm-9
+            input#rate.form-control(type="Text" placeholder="Daily Rates")
+        .form-group
+          label.col-sm-9.control-label(for="dateuntil") 
+           strong Date Until
+          .col-sm-9
+            input#dateuntil.form-control(type="date")
+        .form-group
+          label.col-sm-3.control-label(for="Notes") 
+           strong Notes
+          .col-sm-9
+            textarea#notes(name='notes' rows='4' cols='45')
+            .form-group
+          label.col-sm-3.control-label(for="documents") 
+           strong Documents
+          .col-sm-9
+            input#document.form-control(type="file")
+        .form-group
+          .col-sm-9.col-sm-offset-3
+            button#addemployee.btn.btn-primary.btn-block(type="e") Save
