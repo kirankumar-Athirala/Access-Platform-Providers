@@ -7,7 +7,11 @@ block content
       form.form-horizontal(role="form", method="post")
         .form-group
           .alert.alert-danger(role='alert', id="msgDiv")
-
+        .form-group
+          label.col-sm-6.control-label(for="employeename") 
+           strong Employee Name
+          .col-sm-9
+            input#employeename.form-control(type="text" placeholder="Employee Name" autofocus="" value="")
         .form-group
           label.col-sm-6.control-label(for="providername") 
            strong Provider Name

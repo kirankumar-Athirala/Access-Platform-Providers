@@ -5,6 +5,7 @@ var User      = mongoose.model('Users');
 
 
 var usercontroller = require('../controllers/index');
+var employeecontroller = require('../controllers/employee');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -65,6 +66,37 @@ check('gender','Please select gender')
     usercontroller.AddUser(req, res);
 
   
+  }
+});
+
+
+router.post('/addemployee',[ 
+  check('employee_name','Please  provide Employee Name')
+  .isLength({ min: 1 }),
+  check('provider_name','Please  provide provider person')
+  .isLength({ min: 1 }),
+  check('contactperson','Please  provide contact person')
+  .isLength({ min: 1 }),
+  check('externalperson','Please provide external person')
+  .isLength({ min: 1 }),
+  check('rate','Please provide rate')
+  .isLength({ min: 1 }),
+  check('notes','Please provide notes')
+  .isLength({ min: 1 }),  
+  check('dateuntil','Please provide date')
+  .isLength({ min: 1 }),
+   
+ ], function(req, res, next) {
+
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {     
+      
+     res.json({status : "error", message : errors.array()});
+
+  } else {
+    console.log("i am here employee");
+    employeecontroller.addemployee(req, res); 
   }
 });
 

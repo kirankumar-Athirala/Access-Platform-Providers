@@ -45,7 +45,9 @@ $(function(){
     });
 
     $("#addemployee").on('click', function(event){
+        debugger;
         event.preventDefault();
+        var employeename   = $("#employeename").val();
         var providername   = $("#providername").val();
         var contactperson  = $("#CPerson").val();
         var externalperson   = $("#Eperson").val();
@@ -55,14 +57,14 @@ $(function(){
         var document     = $('#document').val(); 
        
 
-        if(!providername || !contactperson || !externalperson || !rate || !dateuntil || !notes){ 
-            $("#msgDiv").show().html("All fields are required.");
+        if(!employeename|| !providername || !contactperson || !externalperson || !rate || !dateuntil || !notes){ 
+            $("#msgDiv").show().html("All fields are required check.");
         } 
         else{ 
             $.ajax({
                 url: "http://localhost:4001/addemployee",
                 method: "POST",
-                data: { provider_name: providername, contactperson: contactperson, externalperson: externalperson, rate: rate, notes: notes,dateuntil:dateuntil,document: document }
+                data: {employee_name: employeename,provider_name: providername, contactperson: contactperson, externalperson: externalperson, rate: rate, notes: notes,dateuntil:dateuntil,document:document}
             }).done(function( data ) {
 
                 if ( data ) {

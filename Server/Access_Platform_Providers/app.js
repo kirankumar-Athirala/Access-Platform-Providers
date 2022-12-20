@@ -15,6 +15,7 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://Veena:agile@localhost:500/provider-a?authSource=admin');
 require("./models/User");
+require("./models/Employee");
 
 
 var index = require('./routes/index');

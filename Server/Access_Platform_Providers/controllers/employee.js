@@ -6,6 +6,7 @@ var crypto    = require('crypto'), hmac, signature;
 
 const addemployee = (req, res) => {
     var document = {
+        employee_name:  req.body.employee_name,
         provider_name:  req.body.provider_name, 
         contactperson:  req.body.contactperson, 
         externalperson: req.body.externalperson, 
