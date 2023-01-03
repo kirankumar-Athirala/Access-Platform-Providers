@@ -13,42 +13,15 @@ head
   border:1px solid blue;
   }
 h1.text-center.top-buffer Access Management Platform   
-h1.text-center.top-buffer Request for Open Services
+h1.text-center.top-buffer #{title}
 table(style='width:100%')
   tr
-    th Sl.No
     th ID
-    th Type 
-    th Cycle 
-    th Stored 
-    th End 
-    th Location 
-    th Status 
-    tr 
-    td 1
-    td 100
-    td programmer 
-    td  Cycle 
-    td stored 
-    td March 
-    td Frankfurt 
-    td Accepted 
-    tr 
-    td 2
-    td 101
-    td Tester
-    td Cycle 
-    td stored 
-    td March 
-    td Berlin 
-    td Evaluation 
-    tr 
-    td 3
-    td 102
-    td Manager
-    td Cycle 
-    td stored 
-    td March 
-    td Koln 
-    td Ordered 
-  
+    th Name 
+    th Role
+  each detail in details
+    tr
+    td #{detail._id}
+    td #{detail.name}
+    td 
+     img(src=detail.type alt='login' style='width:100px; height:100px;')

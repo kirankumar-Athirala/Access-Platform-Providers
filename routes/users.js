@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -43,11 +44,18 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 
 
 
-router.get('/Openservices', ensureAuthenticated, (req, res) =>
-res.render('openservice', {
-  title: 'Openservices'
+router.get('/Openservices',ensureAuthenticated, (req, res) => {
+  async function getPosts(){
+   const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
+   const data = await posts.json()
+   res.render('openservice',{
+   title:"Openservices",
+   details: data
+ })
+  }
+  getPosts()
+ 
 })
-);
 
 
 // Login
