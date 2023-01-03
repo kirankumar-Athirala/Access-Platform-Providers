@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var mongoose  = require('mongoose');
-var Employee      = mongoose.model('Employee');
+var Employee      = require('../models/Employee');
 var crypto    = require('crypto'), hmac, signature;
+const bcrypt = require('bcryptjs');
+var collection=require('../models/Employee');
 
 const addemployee = (req, res) => {
     var document = {
@@ -25,4 +26,21 @@ const addemployee = (req, res) => {
       res.json({message : "Data saved successfully.", status : "success"});
    }); 
 };
-module.exports = {addemployee};
+
+const Getemployeedata =  (req, res) => {
+  try{
+    collection.find({}, function(err, data) {
+      if (err)
+          res.send(err)
+      console.log(data);           
+      res.render('employee', {
+        title: 'onboardemployee','user' : data
+      })
+  });
+
+  }catch(error){
+    console.log(error.message);
+  }
+};
+
+module.exports = {addemployee,Getemployeedata};

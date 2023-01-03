@@ -5,9 +5,11 @@ const passport = require('passport');
 
 //var User      = mongoose.model('Users');
 var User = require('../models/User');
+var User = require('../models/Employee');
 
 
 var usercontroller = require('../controllers/index');
+var employeecontroller = require('../controllers/employee');
 
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
@@ -35,12 +37,21 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
  
 });
 
+router.get('/onboardemployee', ensureAuthenticated, function(req, res,next){
+  employeecontroller.Getemployeedata(req,res);
+  //const id =req.session.passport.user;
+});
 
 
+router.get('/addemployee', ensureAuthenticated, (req, res) =>
+res.render('addemployee', {
+  title: 'AddEmployee'
+})
+);
 
-router.get('/Openservices', ensureAuthenticated, (req, res) =>
+router.get('/openservice', ensureAuthenticated, (req, res) =>
 res.render('openservice', {
-  title: 'Openservices'
+  title: 'OpenServices'
 })
 );
 
