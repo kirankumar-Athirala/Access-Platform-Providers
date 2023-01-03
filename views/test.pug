@@ -2,7 +2,7 @@ extends layout
 
 block content
    .container
-      h1.text-center.top-buffer Access Management Platform 
+      
       h2.text-center.top-buffer Profile Update
       form.form-horizontal(role="form", method="post")
         .form-group
@@ -12,54 +12,47 @@ block content
           label.col-sm-3.control-label(for="firstname") 
            strong Full Name
           .col-sm-9
-            input#firstname.form-control(type="text" name="firstname" placeholder="First Name" autofocus="" value=user.firstname)
+            input#firstname.form-control(type="text" name="firstname" placeholder="First Name" autofocus="" value=user.name)
         br
 
         .form-group
           label.col-sm-3.control-label(for="lastname") 
            strong Last Name
           .col-sm-9
-            input#lastname.form-control(type="text" name="lastname" placeholder="Last Name" autofocus="" value=user.lastname)
+            input#lastname.form-control(type="text" name="lastname" placeholder="Last Name" autofocus="")
         br
         .form-group
           label.col-sm-3.control-label(for="username") 
            strong User Name
           .col-sm-9
-            input#username.form-control(type="text" name="username" placeholder="User Name" autofocus="" value=user.username)
+            input#username.form-control(type="text" name="username" placeholder="User Name" autofocus="" )
         br
 
         .form-group
           label.col-sm-3.control-label(for="email") 
            strong Email
           .col-sm-9
-            input#email.form-control(type="email" name="email" placeholder="Email" value=user.email)
+            input#email.form-control(type="email" name="email" placeholder="Email" )
         br
         .form-group
           label.col-sm-3.control-label(for="mobile") 
            strong Mobile
           .col-sm-9
-            input#mobile.form-control(type="text" name="mobile" placeholder="Mobile" value=user.mobile)
-
-        br
-        .form-group
-          label.col-sm-3.control-label(for="provider") 
-           strong Provider
-          .col-sm-9
-            input#provider.form-control(type="text" name="mobile" placeholder="Mobile" readonly='' value=user.provider)
+            input#mobile.form-control(type="text" name="mobile" placeholder="Mobile" )
         br
 
         .form-group
           label.col-sm-3.control-label(for="password") 
            strong Password
           .col-sm-9
-            input#password.form-control(type="password" name="password" placeholder="Enter New Password" value="")
+            input#password.form-control(type="password" name="password" placeholder="Password" )
         br
 
         .form-group
           label.col-sm-3.control-label(for="cpassword") 
            strong Confirm Password
           .col-sm-9
-            input#cpassword.form-control(type="password" name="cpassword" placeholder="Confirm password" value="")
+            input#cpassword.form-control(type="password" name="cpassword" placeholder="Confirm password" )
         br             
         br
         .form-group

@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var mongoose  = require('mongoose');
-var Employee      = mongoose.model('Employee');
+
+var Employee = require('../models/Employee');
+var User = require('../models/User');
 var crypto    = require('crypto'), hmac, signature;
 
-const addemployee = (req, res) => {
+ const addemployee =  (req, res) => {
+    console.log("i am in employee");
     var document = {
         employee_name:  req.body.employee_name,
         provider_name:  req.body.provider_name, 
@@ -15,14 +17,79 @@ const addemployee = (req, res) => {
         notes:  req.body.notes, 
         document: req.body.document,
       };
-    
-    var user = new Employee(document); 
-    user.save(function(error){
-      console.log(user);
-      if(error){ 
-        throw error;
+      const id =req.session.passport.user;
+      console.log(id);
+      try{
+        const id =req.session.passport.user;
+
+
+        User.Provider_A.findById(id)
+        .exec((err, data) => {
+        if (data) 
+        {
+            console.log("i am in employee provider A");
+            console.log("i am in employee provider A");
+            var user = new Employee.Provider_A_employee(document); 
+            user.save(function(error){
+              console.log(user);
+              if(error){ 
+                throw error;
+              }
+              res.json({message : "Data saved successfully.", status : "success"});
+           }); 
+        }
+    })
       }
-      res.json({message : "Data saved successfully.", status : "success"});
-   }); 
+      catch(error){
+        console.log(error.message);
+      }
+
+
+      User.Provider_B.findById(id)
+      .exec((err, data) => {
+        if (data) 
+        {
+            var user = new Employee.Provider_B_employee(document); 
+            user.save(function(error){
+              console.log(user);
+              if(error){ 
+                throw error;
+              }
+              res.json({message : "Data saved successfully.", status : "success"});
+           }); 
+        }
+    })
+
+    User.Provider_C.findById(id)
+    .exec((err, data) => {
+        if (data) 
+        {
+            var user = new Employee.Provider_C_employee(document); 
+            user.save(function(error){
+              console.log(user);
+              if(error){ 
+                throw error;
+              }
+              res.json({message : "Data saved successfully.", status : "success"});
+           }); 
+        }
+    })
+
+    User.Provider_D.findById(id)
+      .exec((err, data) => {
+        if (data) 
+        {
+            var user = new Employee.Provider_D_employee(document); 
+            user.save(function(error){
+              console.log(user);
+              if(error){ 
+                throw error;
+              }
+              res.json({message : "Data saved successfully.", status : "success"});
+           }); 
+        }
+    })
+
+    
 };
 module.exports = {addemployee};

@@ -89,6 +89,7 @@ $(function(){
             document.getElementsByName("terms")[0].style.outline = "1px solid red"
         }
         else{ 
+            console.log("i am here");
             $.ajax({
                 url: "/users/register",
                 method: "POST",
@@ -106,7 +107,7 @@ $(function(){
                         errors = errors+ '</ul>';
                         $("#msgDiv").html(errors).show();
                     }else{
-                        window.location.href = "/users/login";
+                        window.location.href = "/";
                     }
                 }
             });
@@ -124,6 +125,7 @@ $(function(){
         var mobile     = $("#mobile").val();
         var email      = $("#email").val();
         var username    = $("#username").val();
+        var provider = $("#provider").val();
         var password   = $("#password").val();
         var cpassword  = $("#cpassword").val();
 
@@ -192,7 +194,7 @@ $(function(){
             $.ajax({
                 url: "/users/edit",
                 method: "POST",
-                data: { firstname: firstname, lastname: lastname, mobile: mobile, email: email, password: password, cpassword: cpassword, username: username}
+                data: { firstname: firstname, lastname: lastname, mobile: mobile, email: email, password: password, cpassword: cpassword, provider:provider, username: username}
             }).done(function( data ) {
 
                 if ( data ) {
@@ -218,7 +220,6 @@ $(function(){
 
 
     $("#addemployee").on('click', function(event){
-        debugger;
         event.preventDefault();
         var employeename   = $("#employeename").val();
         var providername   = $("#providername").val();
@@ -234,6 +235,7 @@ $(function(){
             $("#msgDiv").show().html("All fields are required check.");
         } 
         else{ 
+            console.log("i am in before ajax");
             $.ajax({
                 url: "/users/addemployee",
                 method: "POST",
@@ -251,7 +253,7 @@ $(function(){
                         errors = errors+ '</ul>';
                         $("#msgDiv").html(errors).show();
                     }else{
-                        $("#msgDiv").removeClass('alert-danger').addClass('alert-success').html(data.message).show(); 
+                        window.location.href = "/dashboard";
                     }
                 }
             });

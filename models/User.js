@@ -43,4 +43,15 @@ var userSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Users', userSchema);
+const provider_a = mongoose.connection.useDb('provider-a');
+const provider_b = mongoose.connection.useDb('provider-b');
+const provider_c = mongoose.connection.useDb('provider-c');
+const provider_d = mongoose.connection.useDb('provider-d');
+
+const Provider_A = provider_a.model('Users', userSchema);
+const Provider_B = provider_b.model('Users', userSchema);
+const Provider_C = provider_c.model('Users', userSchema);
+const Provider_D = provider_d.model('Users', userSchema);
+
+
+module.exports = {Provider_A,Provider_B,Provider_C,Provider_D};

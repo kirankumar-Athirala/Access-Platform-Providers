@@ -8,6 +8,7 @@ var User = require('../models/User');
 
 
 var usercontroller = require('../controllers/index');
+var employeecontroller = require('../controllers/employee');
 
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
@@ -21,12 +22,16 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 router.get('/register', forwardAuthenticated, (req, res) =>  res.render('index', { title: 'Registartion'}));
 
 router.get('/Masteragreement', ensureAuthenticated, function(req, res,next){
-  console.log(req.session.passport.user);
-  console.log ("req.session.user;");
 res.render('Masteragreement', {
   title: 'Masteragreements'
 })
 });
+
+router.get('/AddEmployee', ensureAuthenticated, function(req, res,next){
+  res.render('addemployee', {
+    title: 'AddEmployee'
+  })
+  });
 
 router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 
@@ -49,7 +54,7 @@ res.render('openservice', {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
+    failureRedirect: '/',
     failureFlash: true
   })(req, res, next);
 });
@@ -87,6 +92,8 @@ router.post('/register',[
   .trim()
   .normalizeEmail()
   .custom(value => {
+
+   
       return findUserByEmail(value).then(User => {
         //if user email already exists throw an error
     })
@@ -121,6 +128,7 @@ check('username','username cannot be left blank')
      res.json({status : "error", message : errors.array()});
 
   } else {
+    console.log("i am before controller");
     usercontroller.AddUser(req, res);
 
   
@@ -206,6 +214,7 @@ router.post('/addemployee',[
      res.json({status : "error", message : errors.array()});
 
   } else {
+    console.log("i am in employee route");
     employeecontroller.addemployee(req, res); 
   }
 });
@@ -235,7 +244,8 @@ router.post('/update',[
   .trim()
   .normalizeEmail()
   .custom(value => {
-      return findUserByEmail(value).then(User => {
+
+      return findUserByEmail(value).then(user => {
         //if user email already exists throw an error
     })
   }),
@@ -276,15 +286,52 @@ check('username','username cannot be left blank')
 });
 
 function findUserByEmail(email){
-
+  
 if(email){
     return new Promise((resolve, reject) => {
-      User.findOne({ email: email })
-        .exec((err, doc) => {
-          if (err) return reject(err)
-          if (doc) return reject(new Error('This email already exists. Please enter another email.'))
-          else return resolve(email)
+      var finduser = true;
+
+      if (finduser)
+      {
+        User.Provider_A.findOne({ email: email })
+          .exec((err, doc) => {
+            if (err) return reject(err)
+            if (doc) return reject(new Error('This email already exists. Please enter another email.'))
+            else return resolve(email)
         })
+      }
+       if (finduser)
+      {
+        User.Provider_B.findOne({ email: email })
+          .exec((err, doc) => {
+            if (err) return reject(err)
+            if (doc) return reject(new Error('This email already exists. Please enter another email.'))
+            else return resolve(email)
+        })
+      }
+       if (finduser)
+      {
+        User.Provider_C.findOne({ email: email })
+          .exec((err, doc) => {
+            if (err) return reject(err)
+            if (doc) return reject(new Error('This email already exists. Please enter another email.'))
+            else return resolve(email)
+        })
+      }
+       if (finduser)
+      {
+        User.Provider_D.findOne({ email: email })
+          .exec((err, doc) => {
+            if (err) return reject(err)
+            if (doc) return reject(new Error('This email already exists. Please enter another email.'))
+            else return resolve(email)
+        })
+      }
+      else 
+      {
+        return resolve(email)
+      }
+
     })
   }
 }

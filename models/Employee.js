@@ -13,4 +13,15 @@ var userSchemas = new Schema({
     document: { type: String },
 });
 
-module.exports = mongoose.model('Employee', userSchemas);
+const provider_a = mongoose.connection.useDb('provider-a');
+const provider_b = mongoose.connection.useDb('provider-b');
+const provider_c = mongoose.connection.useDb('provider-c');
+const provider_d = mongoose.connection.useDb('provider-d');
+
+const Provider_A_employee = provider_a.model('Employee', userSchemas);
+const Provider_B_employee = provider_b.model('Employee', userSchemas);
+const Provider_C_employee = provider_c.model('Employee', userSchemas);
+const Provider_D_employee = provider_d.model('Employee', userSchemas);
+
+
+module.exports = {Provider_A_employee,Provider_B_employee,Provider_C_employee,Provider_D_employee};
