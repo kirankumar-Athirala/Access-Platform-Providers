@@ -16,7 +16,12 @@ block content
           label.col-sm-6.control-label(for="providername") 
            strong Provider Name
           .col-sm-9
-            input#providername.form-control(type="text" placeholder="Provider Name" autofocus="" value="")
+            select#providername.form-control(name="providername")
+              option(value='') Please Select
+              option A
+              option B
+              option C
+              option D
         .form-group
           label.col-sm-6.control-label(for="contactperson") 
            strong Contact Person

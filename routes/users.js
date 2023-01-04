@@ -7,6 +7,7 @@ const passport = require('passport');
 var User = require('../models/User');
 
 
+
 var usercontroller = require('../controllers/index');
 var employeecontroller = require('../controllers/employee');
 
@@ -27,11 +28,7 @@ res.render('Masteragreement', {
 })
 });
 
-router.get('/AddEmployee', ensureAuthenticated, function(req, res,next){
-  res.render('addemployee', {
-    title: 'AddEmployee'
-  })
-  });
+
 
 router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 
@@ -40,12 +37,21 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
  
 });
 
+router.get('/onboardemployee', ensureAuthenticated, function(req, res,next){
+  employeecontroller.Getemployeedata(req,res);
+  //const id =req.session.passport.user;
+});
 
 
+router.get('/addemployee', ensureAuthenticated, (req, res,next) =>
+res.render('addemployee', {
+  title: 'AddEmployee'
+})
+);
 
-router.get('/Openservices', ensureAuthenticated, (req, res) =>
+router.get('/openservice', ensureAuthenticated, (req, res,next) =>
 res.render('openservice', {
-  title: 'Openservices'
+  title: 'OpenServices'
 })
 );
 
