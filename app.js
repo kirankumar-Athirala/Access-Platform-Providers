@@ -17,7 +17,10 @@ var users = require('./routes/users');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://DBAPP:EUujURH9T3BVZlf9@cluster0.b8lzumr.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb://agile:agileproject@localhost:3000/?authSource=admin');
+// mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-b?authSource=admin');
+// mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-c?authSource=admin');
+// mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-d?authSource=admin');
 //require("./models/User");
 const db = mongoose.connection;
 

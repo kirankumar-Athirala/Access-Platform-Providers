@@ -1,0 +1,59 @@
+doctype html
+head
+ link(rel="icon", href="/images/favicon.ico")
+ style.
+  body { 
+    margin: 0;  
+    padding: 0;  
+    background-color:#6abadeba;
+    font-family: 'Arial';  
+  } 
+  h1,h2,{
+    text-align:center;
+
+    }
+  table, th, td {
+  border:1px solid blue;
+  }
+
+body
+  block content
+  script(src='http://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='/javascripts/app.js')
+h1 Access Management Platform 
+h2 Agreement Details
+
+table#agreementdetailstable(style='width:100%')
+  tr
+    th PositionName
+    th agreementsId
+    th Level
+    th Onsite pay
+    th remote pay
+    th Onsite Percentage
+    th Offsite Percentage
+    th validateFrom
+    th validateUntil 
+
+  each user in users
+    tr
+    td #{user.PositionName}
+    td #{user.agreementsId}
+    td 
+     input#level.form-control(type="text" name="level" placeholder="level" autofocus="" value="")
+    td 
+     input#onsitepay.form-control(type="text" name="onsitepay" placeholder="Onsite pay" autofocus="" value="")
+    td 
+     input#remotepay.form-control(type="text" name="remotepay" placeholder="remotepay" autofocus="" value="")
+    td 
+     input#onsiteper.form-control(type="text" name="onsiteper" placeholder="onsite percentage" autofocus="" value="")
+    td 
+     input#remoteper.form-control(type="text" name="remoteper" placeholder="remote percentage" autofocus="" value="")
+    td 
+     input#validateFrom.form-control(type="date")
+    td 
+     input#validateUntil.form-control(type="date")
+    td 
+     button#agreementdetails.btn.btn-primary(type='button' agreementstatus =`${"Accepted"}`) Send
+
+    

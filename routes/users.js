@@ -10,7 +10,9 @@ var User = require('../models/User');
 
 var usercontroller = require('../controllers/index');
 var employeecontroller = require('../controllers/employee');
-
+var agreementcontroller = require('../controllers/agreements');
+var offercontroller = require('../controllers/offer');
+let agreementcounter = 1;
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
@@ -22,11 +24,91 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 router.get('/register', forwardAuthenticated, (req, res) =>  res.render('index', { title: 'Registartion'}));
 
-router.get('/Masteragreement', ensureAuthenticated, function(req, res,next){
-res.render('Masteragreement', {
-  title: 'Masteragreements'
-})
+router.get('/Masteragreement', ensureAuthenticated, function(req, res,){
+
+  // async function getagreements(){
+  //   const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
+  //   const data = await posts.json()
+  //   res.render('Masteragreement',{
+  //   title:"Masteragreements",
+  //   details: data
+  // })
+  //  }
+  //  getagreements()
+  data = [
+    {
+    "offerid": "63836197a3f23cddb9e961fd",
+    "name": "Web Application development",
+    "type": "Team",
+    "dailyrateindication": "100",
+    "status": "Published",
+    "cycle": "1",
+    "startTime": "2019-04-05",
+    "endTime": "2015-12-01",
+    "location": "Frankfurt"
+    ,
+
+  },
+  {
+    "offerid": "63836197a3f23cddb9e961fd",
+    "name": "Game development",
+    "type": "Team",
+    "status": "Published",
+    "dailyrateindication": "450",
+    "cycle": "1",
+    "startTime": "2019-04-05",
+    "endTime": "2015-12-01",
+    "location": "Frankfurt"
+    ,
+
+  },]
+
+
+
+
+  if (agreementcounter==1)
+  { 
+    console.log("count:",agreementcounter)
+    agreementcontroller.saveagreements(data,req,res);
+    agreementcontroller.getagreement(req,res);
+    agreementcounter++;}
+  else{
+    console.log("count:",agreementcounter)
+    agreementcontroller.getagreement(req,res);
+  }
+
+
+  //agreementcontroller.getagreement(req,res);
 });
+
+router.get('/Masteragreementbidding', ensureAuthenticated, function(req, res,next){
+
+  data = [
+    {
+      "PositionName":"Backend Developer",
+      "agreementsId": "63836197a3f23cddb9e961fd",
+      "Onsite":"950",
+      "remote":"900",
+      "Onsite Percentage":"100%",
+      "validateFrom":"2015-12-01",
+      "validateUntil": "2019-04-05"
+  
+    },
+    {
+      "PositionName":"Frontend Developer",
+      "agreementsId": "63836197a3f23cddb9e961fd",
+      "Onsite":"1000",
+      "remote":"1100",
+      "Onsite Percentage":"80%",
+      "validateFrom":"2015-12-01",
+      "validateUntil": "2019-04-05"
+  
+    }
+  ]
+  res.render('Masteragreementbidding', {
+    title: 'MasteragreementDetails','users' : data
+  })
+  });
 
 router.get('/AddEmployee', ensureAuthenticated, function(req, res,next){
   res.render('addemployee', {
@@ -45,18 +127,52 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 
 
 router.get('/Openservices',ensureAuthenticated, (req, res) => {
-  async function getPosts(){
-   const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
-   const data = await posts.json()
-   res.render('openservice',{
-   title:"Openservices",
-   details: data
- })
-  }
-  getPosts()
+//   async function getPosts(){
+//    const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
+//    const data = await posts.json()
+//    res.render('openservice',{
+//    title:"Openservices",
+//    details: data
+//  })
+//   }
+//   getPosts()
+
+data = [
+  {
+    "PositionName":"Backend Developer",
+    "agreementsId": "63836197a3f23cddb9e961fd",
+    "Onsite":"950",
+    "remote":"900",
+    "Onsite Percentage":"100%",
+    "validateFrom":"2015-12-01",
+    "validateUntil": "2019-04-05"
+
+  },
+  {
+    "PositionName":"Frontend Developer",
+    "agreementsId": "63836197a3f23cddb9e961fd",
+    "Onsite":"1000",
+    "remote":"1100",
+    "Onsite Percentage":"80%",
+    "validateFrom":"2015-12-01",
+    "validateUntil": "2019-04-05"
+
+  }]
+  res.render('openservice',{
+        title:"Openservices",
+        details: data
+      });
  
 })
-
+router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
+  // const data = JSON.stringify(req.query)
+  // console.log(data)
+  employeecontroller.GetEmployeeData(req,res);
+  // res.render('offerEmployee', {
+  //   title: 'offerEmployee',
+  //   data : req.query.id
+  // })
+  });
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -69,6 +185,7 @@ router.post('/login', (req, res, next) => {
 
 // Logout
 router.get('/logout', (req, res, next) => {
+  agreementcounter=1;
   req.logout(function(err) {
     if (err) { return next(err); }
     req.flash('success_msg', 'You are logged out');
@@ -119,8 +236,17 @@ router.post('/register',[
     }
 }),
 
-check('username','username cannot be left blank')
-  .isLength({ min: 1 }),
+check('username')
+.isLength({ min: 1 })
+.withMessage("username cannot be left blank")
+.custom(value => {
+
+    console.log("testing for username-1");
+ 
+    return findUserByUsername(value).then(User => {
+      //if user email already exists throw an error
+  })
+}),
 
   //check('provider','Provider cannot be left blank')
   //.isLength({ min: 1 }),
@@ -293,6 +419,44 @@ check('username','username cannot be left blank')
   }
 });
 
+router.post('/acceptagreement', [ 
+  check('offerid','Please  provide Employee offerid')
+  .isLength({ min: 1 }),
+  check('name','Please  provide Agreement Name')
+  .isLength({ min: 1 }),
+  check('type','Please  provide Agreement type')
+  .isLength({ min: 1 }),
+  check('status','Please provide Agreement status')
+  .isLength({ min: 1 }),
+  check('dailyrateindication','Please provide dailyrateindication')
+  .isLength({ min: 1 }),
+  check('cycle','Please provide Agreement Cycle')
+  .isLength({ min: 1 }),
+  check('startTime','Please provide Agreement start time ')
+  .isLength({ min: 1 }),
+  check('endTime','Please provide Agreement end time')
+  .isLength({ min: 1 }),
+  check('location','Please provide location')
+  .isLength({ min: 1 }),
+  check('agreementstatus','Please provide agreementstatus')
+  .isLength({ min: 1 })
+   
+ ], function(req, res, next) {
+
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {     
+      
+     res.json({status : "error", message : errors.array()});
+
+  } 
+  else {
+    console.log("i am in employee route");
+    agreementcontroller.updateagreement(req, res); 
+  }
+ 
+});
+
 function findUserByEmail(email){
   
 if(email){
@@ -344,6 +508,61 @@ if(email){
   }
 }
 
+function findUserByUsername(username){
+  console.log("testing for username-2");
+  console.log(username);
+  
+  if(username){
+      return new Promise((resolve, reject) => {
+        var finduser = true;
+  
+        if (finduser)
+        {
+          
+          User.Provider_A.findOne({ username: username })
+            .exec((err, doc) => {
+              console.log("testing for username-A");
+              //console.log(doc.username);
+              if (err) return reject(err)
+              if (doc) return reject(new Error('This username already exists. Please enter another username.'))
+              else return resolve(username)
+          })
+        }
+         if (finduser)
+        {
+          User.Provider_B.findOne({ username: username })
+            .exec((err, doc) => {
+              if (err) return reject(err)
+              if (doc) return reject(new Error('This username already exists. Please enter another username.'))
+              else return resolve(username)
+          })
+        }
+         if (finduser)
+        {
+          User.Provider_C.findOne({ username: username })
+            .exec((err, doc) => {
+              if (err) return reject(err)
+              if (doc) return reject(new Error('This username already exists. Please enter another username.'))
+              else return resolve(username)
+          })
+        }
+         if (finduser)
+        {
+          User.Provider_D.findOne({ username: username })
+            .exec((err, doc) => {
+              if (err) return reject(err)
+              if (doc) return reject(new Error('This username already exists. Please enter another username.'))
+              else return resolve(username)
+          })
+        }
+        else 
+        {
+          return resolve(username)
+        }
+  
+      })
+    }
+  }
 
 
 

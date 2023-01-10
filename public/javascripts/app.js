@@ -216,7 +216,85 @@ $(function(){
     });
 
 
-   
+    $("#acceptagreements").on('click', function(){
+
+
+        var offerid = $("#acceptagreements").attr("offerid");
+        var name = $("#acceptagreements").attr("name");
+        var type = $("#acceptagreements").attr("agreementtype");
+        var status = $("#acceptagreements").attr("status");
+        var dailyrateindication = $("#acceptagreements").attr("dailyrateindication");
+        var cycle = $("#acceptagreements").attr("cycle");
+        var startTime = $("#acceptagreements").attr("startTime");
+        var endTime = $("#acceptagreements").attr("endTime");
+        var location = $("#acceptagreements").attr("location");
+        var agreementstatus = $("#acceptagreements").attr("agreementstatus");;
+        console.log(agreementstatus)
+        console.log(offerid,name,type,status,dailyrateindication,cycle,startTime,endTime,location,agreementstatus);
+        if( !offerid || !name || !type || !status || !dailyrateindication ||!cycle || !startTime || !endTime || !location || !agreementstatus ){ 
+            console.log("didnt get data")
+            $("#msgDiv").show().html("All fields are required check.");  
+        } 
+        else{ 
+            $.ajax({
+                url: "/users/acceptagreement",
+                method: "POST",
+                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:agreementstatus }
+            }).done(function( data ) {
+
+                if ( data ) {
+                    if(data.status == 'error'){
+
+                        alert(data.message);
+                    }else{
+                        window.location.href = "/users/Masteragreement";
+  
+                    }
+                }
+            });
+        }
+    });
+
+
+    $("#rejectagreements").on('click', function(){
+
+
+        var offerid = $("#acceptagreements").attr("offerid");
+        var name = $("#acceptagreements").attr("name");
+        var type = $("#acceptagreements").attr("agreementtype");
+        var status = $("#acceptagreements").attr("status");
+        var dailyrateindication = $("#acceptagreements").attr("dailyrateindication");
+        var cycle = $("#acceptagreements").attr("cycle");
+        var startTime = $("#acceptagreements").attr("startTime");
+        var endTime = $("#acceptagreements").attr("endTime");
+        var location = $("#acceptagreements").attr("location");
+        var agreementstatus = $("#acceptagreements").attr("agreementstatus");;
+        console.log(agreementstatus)
+        console.log(offerid,name,type,status,dailyrateindication,cycle,startTime,endTime,location,agreementstatus);
+        if( !offerid || !name || !type || !status || !dailyrateindication ||!cycle || !startTime || !endTime || !location || !agreementstatus ){ 
+            console.log("didnt get data")
+            $("#msgDiv").show().html("All fields are required check.");  
+        } 
+        else{ 
+            $.ajax({
+                url: "/users/acceptagreement",
+                method: "POST",
+                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:agreementstatus }
+            }).done(function( data ) {
+
+                if ( data ) {
+                    if(data.status == 'error'){
+                        alert(data.message);
+                       
+                    }else{
+                        window.location.href = "/users/Masteragreement";
+  
+                    }
+                }
+            });
+        }
+    });
+
 
 
     $("#addemployee").on('click', function(event){
@@ -259,4 +337,56 @@ $(function(){
             });
         }
     });
+
+    $("#addoffer").on('click', function(){
+        var offerid = $("#addoffer").attr("offerid");
+        var PositionID = $("#addoffer").attr("PositionID");
+        var employee_name = $("#addoffer").attr("employee_name");
+        var provider_name = $("#addoffer").attr("provider_name");
+        var contactperson = $("#addoffer").attr("contactperson");
+        var externalperson = $("#addoffer").attr("externalperson");
+        var rate = $("#addoffer").attr("rate");
+        var notes = $("#addoffer").attr("notes");
+        var dateuntil = $("#addoffer").attr("dateuntil");
+        var document = $("#addoffer").attr("document");
+        if( !offerid || !PositionID || !employee_name || !provider_name || !contactperson ||!externalperson || !rate || !notes || !dateuntil || !document ){ 
+            console.log("didnt get data")
+            $("#msgDiv").show().html("All fields are required check.");  
+        } 
+        else{ 
+            console.log("i am in before ajax");
+            $.ajax({
+                url: "/users/addoffer",
+                method: "POST",
+                data: {offerid: offerid,PositionID: PositionID,employee_name: employee_name,provider_name:provider_name,contactperson: contactperson,externalperson:externalperson,rate:rate, notes:notes,dateuntil: dateuntil,document:document }
+            }).done(function( data ) {
+
+                if ( data ) {
+                    if(data.status == 'error'){
+
+                        var errors = '<ul>';
+                        $.each( data.message, function( key, value ) {
+                            errors = errors +'<li>'+value.msg+'</li>';
+                        });
+
+                        errors = errors+ '</ul>';
+                        $("#msgDiv").html(errors).show();
+                    }else{
+                        window.location.href = "/dashboard";
+                    }
+                }
+            });
+        }
+    });
+
+
+    $("#btnSelect").on('click',function(){
+        var currentRow=$(this).closest("tr");
+        console.log("currentRow",currentRow);
+        var col1=currentRow.find("td:eq(0)").html();
+        var col2=currentRow.find("td:eq(1)").html();
+        var col3=currentRow.find("td:eq(2)").html();
+        var data=col1+"\n"+col2+"\n"+col3;
+        alert(data);
+   });
 });

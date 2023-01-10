@@ -23,7 +23,7 @@ var userSchema = new Schema({
     Required:  'mobile number cannot be left blank.',
     validate: [validateMobile, 'Please fill a valid mobile number'],
          match: [/^\+?[0-9]+[0-9\-]+[0-9]$/, 'Please fill a valid mobile number'],
-    index: {unique: true, dropDups: true}
+    index: {unique: true}
     },
   email:    { 
     
@@ -32,7 +32,7 @@ var userSchema = new Schema({
     Required:  'Email address cannot be left blank.',
     validate: [validateEmail, 'Please fill a valid email address'],
          match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
-    index: {unique: true, dropDups: true}
+    index: {unique: true}
     },
 
   password: { type: String , required: [true,  'Password cannot be left blank']},

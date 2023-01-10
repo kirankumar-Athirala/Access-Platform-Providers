@@ -10,7 +10,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
    })
 
    router.get('/dashboard', ensureAuthenticated, function(req, res,next){
-      console.log(req.session.passport.user);
+      console.log("in dashboard",req.session.passport.user);
       res.render('dashboard', { title: 'Dashboard'});
    });
    

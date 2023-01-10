@@ -92,4 +92,97 @@ var crypto    = require('crypto'), hmac, signature;
 
     
 };
-module.exports = {addemployee};
+
+
+// get employee data start
+const GetEmployeeData =  (req, res) => {
+  try{
+    
+       
+    
+    const id =req.session.passport.user
+
+
+    User.Provider_A.findById(id)
+    .exec((err, data) => {
+      if (data) 
+      {
+        Employee.Provider_A_employee.find()
+        
+       .exec((err,data)=>{
+        if(data){
+          res.render('offerEmployee', {
+            title: 'offerEmployee',
+            'employees':data,
+            "PositionID" : req.query.id
+          })
+        }
+
+       })
+      }
+  })
+
+  User.Provider_B.findById(id)
+  .exec((err, data) => {
+    if (data) 
+    {
+      Employee.Provider_B_employee.find()
+      
+     .exec((err,data)=>{
+      if(data){
+        res.render('offerEmployee', {
+          title: 'offerEmployee',
+          'employees':data,
+          "PositionID" : req.query.id
+        })
+      }
+
+     })
+    }
+})
+
+User.Provider_C.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_C_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "PositionID" : req.query.id
+      })
+    }
+
+   })
+  }
+})
+User.Provider_D.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_D_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "PositionID" : req.query.id
+      })
+    }
+
+   })
+  }
+})
+
+
+
+  }catch(error){
+    console.log(error.message);
+  }
+};
+
+module.exports = {addemployee,GetEmployeeData};

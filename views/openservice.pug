@@ -18,10 +18,11 @@ table(style='width:100%')
   tr
     th ID
     th Name 
-    th Role
+    th ADD
   each detail in details
     tr
-    td #{detail._id}
-    td #{detail.name}
-    td 
-     img(src=detail.type alt='login' style='width:100px; height:100px;')
+    td #{detail.agreementsId}
+    td #{detail.PositionName}
+    td
+     li
+      a(href=`/users/offerEmployee?id=${detail._id}`) offerEmployee

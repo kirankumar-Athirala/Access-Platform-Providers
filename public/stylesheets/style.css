@@ -15,7 +15,9 @@ body {
     background: #23463f;  
     border-radius: 15px ; 
 }
-
+h1{
+    text-align:center;
+    }
 h2 {
     text-align: center;  
     color: #272d82;  
@@ -35,6 +37,10 @@ button{
   
   
 } 
+table, th, td {
+    border:1px solid blue;
+    }
+
 #msgDiv {
    display: none;
 }

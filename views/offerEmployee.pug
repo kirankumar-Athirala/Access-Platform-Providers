@@ -1,0 +1,26 @@
+extends layout
+
+block content
+ .container
+   table(style='width:100%',border='1')
+    tr
+     th ID
+     th PositionID
+     th employee_name 
+     th provider_name
+     th contactperson
+     th externalperson
+     th rate
+     th notes 
+     th  
+    each employee in employees
+     tr
+     td #{employee._id}
+     td #{employee.employee_name}
+     td #{employee.provider_name}
+     td #{employee.contactperson}
+     td #{employee.externalperson}
+     td #{employee.rate}
+     td #{employee.notes}
+     td
+      button#addoffer.btn.btn-primary(type='button' offerid=`${employee._id}` PositionID=`${PositionID}` employee_name=`${employee.employee_name}` provider_name=`${employee.provider_name}` contactperson =`${employee.contactperson}` externalperson =`${employee.externalperson}` rate =`${employee.rate}` notes =`${employee.notes}` dateuntil =`${employee.dateuntil}` document =`${employee.document}`) Save
