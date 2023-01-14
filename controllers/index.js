@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var Employee = require('../models/Employee');
 //var crypto    = require('crypto'), hmac, signature;
 const bcrypt = require('bcryptjs');
 
@@ -144,6 +145,101 @@ const UpdateUser = (req, res) => {
 
 };
 
+// get employee data start
+const GetEmployeeData =  (req, res) => {
+  try{
+    
+       
+    
+    const id =req.session.passport.user
+
+
+    User.Provider_A.findById(id)
+    .exec((err, data) => {
+      if (data) 
+      {
+        Employee.Provider_A_employee.find()
+        
+       .exec((err,data)=>{
+        if(data){
+           const a= 0
+          res.render('offerEmployee', {
+            title: 'offerEmployee',
+            'employees':data,
+            "allid" : req.query
+          })
+        }
+
+       })
+      }
+  })
+
+  User.Provider_B.findById(id)
+  .exec((err, data) => {
+    if (data) 
+    {
+      Employee.Provider_B_employee.find()
+      
+     .exec((err,data)=>{
+      if(data){
+        res.render('offerEmployee', {
+          title: 'offerEmployee',
+          'employees':data,
+          "PositionID" : req.query.id
+        })
+      }
+
+     })
+    }
+})
+
+User.Provider_C.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_C_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "PositionID" : req.query.id
+      })
+    }
+
+   })
+  }
+})
+User.Provider_D.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_D_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "PositionID" : req.query.id
+      })
+    }
+
+   })
+  }
+})
+
+
+
+  }catch(error){
+    console.log(error.message);
+  }
+};
+
+// get employee data end
+
+
 
 const GetUserData =  (req, res) => {
   try{
@@ -247,4 +343,4 @@ const GetUserData =  (req, res) => {
 };
 
 
-module.exports = {AddUser,GetUserData,UpdateUser};
+module.exports = {AddUser,GetUserData,UpdateUser,GetEmployeeData};

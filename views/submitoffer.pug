@@ -1,0 +1,67 @@
+extends layout
+
+block content
+   .container
+      h1.text-center.top-buffer Access Management Platform 
+      h2.text-center.top-buffer Offer this employee
+      form.form-horizontal(role="form", method="post")
+        .form-group
+          .alert.alert-danger(role='alert', id="msgDiv")
+        .form-group
+          label.col-sm-6.control-label(for="EmployeeID") 
+           strong employeeid
+          .col-sm-9
+            input#employeeid.form-control(type="text" placeholder=`` autofocus="" value=offerEmployeeDetails.employee_id)
+        .form-group
+          label.col-sm-6.control-label(for="positionid") 
+           strong positionid
+          .col-sm-9
+            input#positionid.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.positionid)
+        .form-group
+          label.col-sm-6.control-label(for="agreementsid") 
+           strong agreementsid
+          .col-sm-9
+            input#agreementsid.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.agreementsid)
+        .form-group
+          label.col-sm-6.control-label(for="employee_name") 
+           strong employee_name
+          .col-sm-9
+            input#employee_name.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.employee_name)
+        .form-group
+          label.col-sm-6.control-label(for="provider_name") 
+           strong provider_name
+          .col-sm-9
+            input#provider_name.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.provider_name)
+        .form-group
+          label.col-sm-6.control-label(for="contactperson") 
+           strong contactperson
+          .col-sm-9
+            input#contactperson.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.contactperson)
+        .form-group
+          label.col-sm-6.control-label(for="externalperson") 
+           strong externalperson
+          .col-sm-9
+            input#externalperson.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.externalperson)
+        .form-group
+          label.col-sm-6.control-label(for="rate") 
+           strong rate
+          .col-sm-9
+            input#rate.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.rate)
+        .form-group
+          label.col-sm-6.control-label(for="notes") 
+           strong notes
+          .col-sm-9
+            input#notes.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.notes)
+        .form-group
+          label.col-sm-6.control-label(for="dateuntil") 
+           strong dateuntil
+          .col-sm-9
+            input#dateuntil.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.dateuntil)
+        .form-group
+          label.col-sm-6.control-label(for="document") 
+           strong document
+          .col-sm-9
+            input#document.form-control(type="text" placeholder="Provider Name" autofocus="" value=offerEmployeeDetails.document)
+        .form-group
+          .col-sm-9.col-sm-offset-3
+            button#submitoffer.btn.btn-primary.btn-block(type="e") submit

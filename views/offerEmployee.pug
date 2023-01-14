@@ -1,0 +1,31 @@
+extends layout
+
+block content
+ .container
+   table(style='width:100%',border='1')
+    tr
+     th Employee ID
+     th PositionID
+     th Agreement ID
+     th employee_name 
+     th provider_name
+     th contactperson
+     th externalperson
+     th rate
+     th notes
+     th date
+     th  
+    each employee in employees
+     tr
+     td #{employee._id}
+     td #{allid.positionid}
+     td #{allid.agreementsid}
+     td #{employee.employee_name}
+     td #{employee.provider_name}
+     td #{employee.contactperson}
+     td #{employee.externalperson}
+     td #{employee.rate}
+     td #{employee.notes}
+     td #{employee.dateuntil}
+     td
+      a(href=`/users/submitoffer?employee_id=${employee._id}&positionid=${allid.positionid}&agreementsid=${allid.agreementsid}&employee_name=${employee.employee_name}&provider_name=${employee.provider_name}&contactperson=${employee.contactperson}&externalperson=${employee.externalperson}&rate=${employee.rate}&notes=${employee.notes}&dateuntil=${employee.dateuntil}&document=${employee.document}`) select

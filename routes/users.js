@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 const fetch = require('node-fetch')
 const express = require('express');
 const router = express.Router();
@@ -9,10 +10,13 @@ var User = require('../models/User');
 
 
 var usercontroller = require('../controllers/index');
+var GetEmployeecontroller = require('../controllers/index');
 var employeecontroller = require('../controllers/employee');
+var offercontroller = require('../controllers/offer');
 
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+const { json } = require('express');
 
 
 // Login Page
@@ -33,6 +37,22 @@ router.get('/AddEmployee', ensureAuthenticated, function(req, res,next){
     title: 'AddEmployee'
   })
   });
+  
+router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
+  // const data = JSON.stringify(req.query)
+  // console.log(data)
+  GetEmployeecontroller.GetEmployeeData(req,res);
+  // res.render('offerEmployee', {
+  //   title: 'offerEmployee',
+  //   data : req.query.id
+  // })
+  });
+router.get('/submitoffer', ensureAuthenticated, function(req, res,next){
+     res.render('submitoffer', {
+      title: 'submitoffer',
+      "offerEmployeeDetails":req.query
+    })
+    });
 
 router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 
@@ -227,6 +247,44 @@ router.post('/addemployee',[
   }
 });
 
+router.post('/addoffer', [ 
+  check('employeeid','Please  provide employeeid')
+  .isLength({ min: 1 }),
+  check('positionid','Please  provide positionid')
+  .isLength({ min: 1 }),
+  check('agreementsid','Please  provide agreementsid')
+  .isLength({ min: 1 }),
+  check('employee_name','Please provide employee_name')
+  .isLength({ min: 1 }),
+  check('provider_name','Please provide provider_name')
+  .isLength({ min: 1 }),
+  check('contactperson','Please contactperson')
+  .isLength({ min: 1 }),
+  check('externalperson','Please provide externalperson')
+  .isLength({ min: 1 }),
+  check('rate','Please rate')
+  .isLength({ min: 1 }),
+  check('notes','Please provide notes')
+  .isLength({ min: 1 }),
+  check('dateuntil','Please provide dateuntil')
+  .isLength({ min: 1 }),
+  check('document','Please provide document')
+  .isLength({ min: 1 })
+   
+ ], function(req, res, next) {
+
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {     
+      
+     res.json({status : "error", message : errors.array()});
+
+  } else {
+    console.log("i am in employee route");
+    offercontroller.addoffer(req, res); 
+  }
+ 
+});
 
 
 router.post('/update',[ 
