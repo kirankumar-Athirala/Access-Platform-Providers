@@ -12,7 +12,6 @@ var usercontroller = require('../controllers/index');
 var employeecontroller = require('../controllers/employee');
 var agreementcontroller = require('../controllers/agreements');
 var offercontroller = require('../controllers/offer');
-let agreementcounter = 1;
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
@@ -50,7 +49,7 @@ router.get('/Masteragreement', ensureAuthenticated, function(req, res,){
 
   },
   {
-    "offerid": "63836197a3f23cddb9e961fd",
+    "offerid": "63836197a3f23cddb9e961fy",
     "name": "Game development",
     "type": "Team",
     "status": "Published",
@@ -61,23 +60,40 @@ router.get('/Masteragreement', ensureAuthenticated, function(req, res,){
     "location": "Frankfurt"
     ,
 
-  },]
+  },
+
+  {
+    "offerid": "63836197a3f23cddb9e961fz",
+    "name": " AI development",
+    "type": "Team",
+    "status": "Published",
+    "dailyrateindication": "950",
+    "cycle": "1",
+    "startTime": "2019-04-05",
+    "endTime": "2015-12-01",
+    "location": "Muncih"
+    ,
+
+  }]
 
 
 
 
-  if (agreementcounter==1)
-  { 
-    console.log("count:",agreementcounter)
-    agreementcontroller.saveagreements(data,req,res);
-    agreementcontroller.getagreement(req,res);
-    agreementcounter++;}
-  else{
-    console.log("count:",agreementcounter)
-    agreementcontroller.getagreement(req,res);
-  }
+  // if (agreementcounter==1)
+  // { 
+  //   console.log("count:",agreementcounter)
+  //   agreementcontroller.saveagreements(data,req,res);
+  //   agreementcontroller.getagreement(req,res);
+  //   agreementcounter++;}
+  // else{
+  //   console.log("count:",agreementcounter)
+  //   agreementcontroller.getagreement(req,res);
+  // }
 
+  agreementcontroller.saveagreements(data,req,res);
 
+  
+  agreementcontroller.getagreement(req,res);
   //agreementcontroller.getagreement(req,res);
 });
 
@@ -87,9 +103,10 @@ router.get('/Masteragreementbidding', ensureAuthenticated, function(req, res,nex
     {
       "PositionName":"Backend Developer",
       "agreementsId": "63836197a3f23cddb9e961fd",
+      "level":1,
       "Onsite":"950",
       "remote":"900",
-      "Onsite Percentage":"100%",
+      "OnsitePercentage":"100%",
       "validateFrom":"2015-12-01",
       "validateUntil": "2019-04-05"
   
@@ -97,17 +114,19 @@ router.get('/Masteragreementbidding', ensureAuthenticated, function(req, res,nex
     {
       "PositionName":"Frontend Developer",
       "agreementsId": "63836197a3f23cddb9e961fd",
+      "level":2,
       "Onsite":"1000",
       "remote":"1100",
-      "Onsite Percentage":"80%",
+      "OnsitePercentage":"80%",
       "validateFrom":"2015-12-01",
       "validateUntil": "2019-04-05"
   
     }
   ]
-  res.render('Masteragreementbidding', {
-    title: 'MasteragreementDetails','users' : data
-  })
+
+  agreementcontroller.biddingdata(data,req,res);
+  agreementcontroller.getagreementbids(req,res);
+
   });
 
 router.get('/AddEmployee', ensureAuthenticated, function(req, res,next){
@@ -124,6 +143,43 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 });
 
 
+router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
+  // const data = JSON.stringify(req.query)
+  // console.log(data)
+  usercontroller.GetEmployeeData(req,res);
+  // res.render('offerEmployee', {
+  //   title: 'offerEmployee',
+  //   data : req.query.id
+  // })
+  });
+router.get('/submitoffer', ensureAuthenticated, function(req, res,next){
+     res.render('submitoffer', {
+      title: 'submitoffer',
+      "offerEmployeeDetails":req.query
+    })
+    });
+
+router.get('/agreementdetails', ensureAuthenticated, function(req, res,next){
+     res.render('agreementdetails', {
+      title: 'Agreement Details',
+      "AgreementDetails":req.query
+    })
+    });
+router.get('/biddingdetails', ensureAuthenticated, function(req, res,next){
+     res.render('biddingdetails', {
+      title: 'Bidding Details',
+      "BiddingDetails":req.query
+    })
+    });
+
+
+router.get('/Agreementbids', function(req, res,next){
+  agreementcontroller.getagreementbidsforoffer(req,res);
+    });
+
+router.get('/offers', function(req, res,next){
+  offercontroller.getroffers(req,res);
+    });
 
 
 router.get('/Openservices',ensureAuthenticated, (req, res) => {
@@ -139,6 +195,7 @@ router.get('/Openservices',ensureAuthenticated, (req, res) => {
 
 data = [
   {
+    "_id":1,
     "PositionName":"Backend Developer",
     "agreementsId": "63836197a3f23cddb9e961fd",
     "Onsite":"950",
@@ -149,6 +206,7 @@ data = [
 
   },
   {
+    "_id":2,
     "PositionName":"Frontend Developer",
     "agreementsId": "63836197a3f23cddb9e961fd",
     "Onsite":"1000",
@@ -419,6 +477,45 @@ check('username','username cannot be left blank')
   }
 });
 
+router.post('/addoffer', [ 
+  check('employeeid','Please  provide employeeid')
+  .isLength({ min: 1 }),
+  check('positionid','Please  provide positionid')
+  .isLength({ min: 1 }),
+  check('agreementsid','Please  provide agreementsid')
+  .isLength({ min: 1 }),
+  check('employee_name','Please provide employee_name')
+  .isLength({ min: 1 }),
+  check('provider_name','Please provide provider_name')
+  .isLength({ min: 1 }),
+  check('contactperson','Please contactperson')
+  .isLength({ min: 1 }),
+  check('externalperson','Please provide externalperson')
+  .isLength({ min: 1 }),
+  check('rate','Please rate')
+  .isLength({ min: 1 }),
+  check('notes','Please provide notes')
+  .isLength({ min: 1 }),
+  check('dateuntil','Please provide dateuntil')
+  .isLength({ min: 1 }),
+  check('document','Please provide document')
+  .isLength({ min: 1 })
+   
+ ], function(req, res, next) {
+
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {     
+      
+     res.json({status : "error", message : errors.array()});
+
+  } else {
+    console.log("i am in employee route");
+    offercontroller.addoffer(req, res); 
+  }
+ 
+});
+
 router.post('/acceptagreement', [ 
   check('offerid','Please  provide Employee offerid')
   .isLength({ min: 1 }),
@@ -453,6 +550,42 @@ router.post('/acceptagreement', [
   else {
     console.log("i am in employee route");
     agreementcontroller.updateagreement(req, res); 
+  }
+ 
+});
+
+router.post('/bidagreement', [ 
+  check('positionname','Please  provide position name')
+  .isLength({ min: 1 }),
+  check('agreementid','Please  provide agreementid')
+  .isLength({ min: 1 }),
+  check('level','Please  provide level')
+  .isLength({ min: 1 }),
+  check('onsite','Please provide onsite pay')
+  .isLength({ min: 1 }),
+  check('remote','Please provide remote pay')
+  .isLength({ min: 1 }),
+  check('onsiteper','Please provide onsite percentage')
+  .isLength({ min: 1 }),
+  check('validfrom','Please provide validfrom ')
+  .isLength({ min: 1 }),
+  check('vailduntil','Please provide vailduntil')
+  .isLength({ min: 1 }),
+  check('biddingstatus','Please provide biddingstatus')
+  .isLength({ min: 1 }),
+   
+ ], function(req, res, next) {
+
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {     
+      
+     res.json({status : "error", message : errors.array()});
+
+  } 
+  else {
+    console.log("i am in employee route");
+    agreementcontroller.updatebid(req, res); 
   }
  
 });

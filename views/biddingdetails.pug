@@ -1,0 +1,58 @@
+extends layout
+
+block content
+   .container
+      h1.text-center.top-buffer Access Management Platform 
+      h2.text-center.top-buffer Bidding Details
+      form.form-horizontal(role="form", method="post")
+        .form-group
+          .alert.alert-danger(role='alert', id="msgDiv")
+        .form-group
+          label.col-sm-6.control-label(for="positionname") 
+           strong Position Name
+          .col-sm-9
+            input#positionname.form-control(type="text" autofocus="" readonly='' value=BiddingDetails.positionname)
+        .form-group
+          label.col-sm-6.control-label(for="agreementid") 
+           strong Agreement ID
+          .col-sm-9
+            input#agreementid.form-control(type="text"  autofocus="" readonly='' value=BiddingDetails.agreementid)
+        .form-group
+          label.col-sm-6.control-label(for="level") 
+           strong Level
+          .col-sm-9
+            input#level.form-control(type="text" placeholder="Level" autofocus="")
+        .form-group
+          label.col-sm-6.control-label(for="onsite") 
+           strong Onsitepay
+          .col-sm-9
+            input#onsite.form-control(type="text" autofocus="" placeholder="onsite pay")
+        .form-group
+          label.col-sm-6.control-label(for="remote") 
+           strong Remote Pay
+          .col-sm-9
+            input#remote.form-control(type="text" autofocus="" placeholder="remote pay")
+        .form-group
+          label.col-sm-6.control-label(for="onsiteper") 
+           strong Onsite Percentage
+          .col-sm-9
+            input#onsiteper.form-control(type="text" autofocus="" placeholder="onsite percentage")
+        .form-group
+          label.col-sm-6.control-label(for="validfrom") 
+           strong Valid From
+          .col-sm-9
+            input#validfrom.form-control(type="text" autofocus="" placeholder="Valid from")
+        .form-group
+          label.col-sm-6.control-label(for="vailduntil") 
+           strong Vaild Until
+          .col-sm-9
+            input#vailduntil.form-control(type="text"  autofocus="" placeholder="Valid Until")
+        .form-group
+          label.col-sm-6.control-label(for="biddingstatus") 
+           strong biddingstatus
+          .col-sm-9
+            input#biddingstatus.form-control(type="text" autofocus="" readonly='' value=BiddingDetails.biddingstatus)
+        br
+        .form-group
+           .col-sm-9.col-sm-offset-3
+            button#bid.btn.btn-primary(type='button' ) Bid

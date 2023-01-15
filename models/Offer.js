@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchemas = new Schema({
-    offerid: { type: String,  required: [true, 'Employee name must be provided'] },
-    PositionID: { type: String,  required: [true, 'Provider email must be provided'] },
+    employeeid: { type: String,  required: [true, 'Employee name must be provided'] },
+    positionid: { type: String,  required: [true, 'Provider email must be provided'] },
+    agreementsid: { type: String,  required: [true, 'Provider id must be provided'] },
     employee_name: { type: String,  required: [true, 'Provider id must be provided'] },
     provider_name: { type: String,  required: [true, 'Provider id must be provided'] },
     contactperson: { type: String,  required: [true, 'Provider id must be provided'] },

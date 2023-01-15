@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/User');
 //var crypto    = require('crypto'), hmac, signature;
 const bcrypt = require('bcryptjs');
+var Employee = require('../models/Employee');
 
 
 const AddUser = (req, res) => {
@@ -191,60 +192,105 @@ const GetUserData =  (req, res) => {
       }
   })
 
-    
-   /*  if (User.Provider_A.findById(id))
-    {
-    User.Provider_A.findById(id, function(err, data) {
-      if (err)
-          res.send(err)
-      //res.json(data);
-      res.render('edit', {
-        title: 'UpdateProfile','user' : data
-      })
-    });
-   }
-   else if (User.Provider_B.findById(id))
-    {
-    User.Provider_B.findById(id, function(err, data) {
-      if (err)
-          res.send(err)
-      //res.json(data);
-      res.render('edit', {
-        title: 'UpdateProfile','user' : data
-      })
-    });
-   }
-   else if (User.Provider_C.findById(id))
-    {
-    User.Provider_C.findById(id, function(err, data) {
-      if (err)
-          res.send(err)
-      //res.json(data);
-      res.render('edit', {
-        title: 'UpdateProfile','user' : data
-      })
-    });
-   }
-   else if (User.Provider_D.findById(id))
-    {
-    User.Provider_D.findById(id, function(err, data) {
-      if (err)
-          res.send(err)
-      //res.json(data);
-      res.render('edit', {
-        title: 'UpdateProfile','user' : data
-      })
-    });
-   }
-   else
-   {
-    res.send(err);
-   } */
 
   }catch(error){
     console.log(error.message);
   }
 };
 
+// get employee data start
+const GetEmployeeData =  (req, res) => {
+  try{
+    
+       
+    
+    const id =req.session.passport.user
 
-module.exports = {AddUser,GetUserData,UpdateUser};
+
+    User.Provider_A.findById(id)
+    .exec((err, data) => {
+      if (data) 
+      {
+        Employee.Provider_A_employee.find()
+        
+       .exec((err,data)=>{
+        if(data){
+           const a= 0
+          res.render('offerEmployee', {
+            title: 'offerEmployee',
+            'employees':data,
+            "allid" : req.query
+          })
+        }
+
+       })
+      }
+  })
+
+  User.Provider_B.findById(id)
+  .exec((err, data) => {
+    if (data) 
+    {
+      Employee.Provider_B_employee.find()
+      
+     .exec((err,data)=>{
+      if(data){
+        res.render('offerEmployee', {
+          title: 'offerEmployee',
+          'employees':data,
+          "allid" : req.query
+        })
+      }
+
+     })
+    }
+})
+
+User.Provider_C.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_C_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "allid" : req.query
+      })
+    }
+
+   })
+  }
+})
+User.Provider_D.findById(id)
+.exec((err, data) => {
+  if (data) 
+  {
+    Employee.Provider_D_employee.find()
+    
+   .exec((err,data)=>{
+    if(data){
+      res.render('offerEmployee', {
+        title: 'offerEmployee',
+        'employees':data,
+        "allid" : req.query
+      })
+    }
+
+   })
+  }
+})
+
+
+
+  }catch(error){
+    console.log(error.message);
+  }
+};
+
+// get employee data end
+
+
+module.exports = {AddUser,GetUserData,UpdateUser,GetEmployeeData};

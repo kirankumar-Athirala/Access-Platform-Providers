@@ -219,16 +219,16 @@ $(function(){
     $("#acceptagreements").on('click', function(){
 
 
-        var offerid = $("#acceptagreements").attr("offerid");
-        var name = $("#acceptagreements").attr("name");
-        var type = $("#acceptagreements").attr("agreementtype");
-        var status = $("#acceptagreements").attr("status");
-        var dailyrateindication = $("#acceptagreements").attr("dailyrateindication");
-        var cycle = $("#acceptagreements").attr("cycle");
-        var startTime = $("#acceptagreements").attr("startTime");
-        var endTime = $("#acceptagreements").attr("endTime");
-        var location = $("#acceptagreements").attr("location");
-        var agreementstatus = $("#acceptagreements").attr("agreementstatus");;
+        var offerid = $("#offerid").val();
+        var name = $("#name").val();
+        var type = $("#type").val();
+        var status = $("#status").val();
+        var dailyrateindication = $("#dailyrateindication").val();
+        var cycle = $("#cycle").val();
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var location = $("#location").val();
+        var agreementstatus = $("#agreementstatus").val();
         console.log(agreementstatus)
         console.log(offerid,name,type,status,dailyrateindication,cycle,startTime,endTime,location,agreementstatus);
         if( !offerid || !name || !type || !status || !dailyrateindication ||!cycle || !startTime || !endTime || !location || !agreementstatus ){ 
@@ -239,7 +239,7 @@ $(function(){
             $.ajax({
                 url: "/users/acceptagreement",
                 method: "POST",
-                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:agreementstatus }
+                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:"Accepted" }
             }).done(function( data ) {
 
                 if ( data ) {
@@ -247,7 +247,7 @@ $(function(){
 
                         alert(data.message);
                     }else{
-                        window.location.href = "/users/Masteragreement";
+                        window.location.href = "/dashboard";
   
                     }
                 }
@@ -259,16 +259,16 @@ $(function(){
     $("#rejectagreements").on('click', function(){
 
 
-        var offerid = $("#acceptagreements").attr("offerid");
-        var name = $("#acceptagreements").attr("name");
-        var type = $("#acceptagreements").attr("agreementtype");
-        var status = $("#acceptagreements").attr("status");
-        var dailyrateindication = $("#acceptagreements").attr("dailyrateindication");
-        var cycle = $("#acceptagreements").attr("cycle");
-        var startTime = $("#acceptagreements").attr("startTime");
-        var endTime = $("#acceptagreements").attr("endTime");
-        var location = $("#acceptagreements").attr("location");
-        var agreementstatus = $("#acceptagreements").attr("agreementstatus");;
+        var offerid = $("#offerid").val();
+        var name = $("#name").val();
+        var type = $("#type").val();
+        var status = $("#status").val();
+        var dailyrateindication = $("#dailyrateindication").val();
+        var cycle = $("#cycle").val();
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var location = $("#location").val();
+        var agreementstatus = $("#agreementstatus").val();
         console.log(agreementstatus)
         console.log(offerid,name,type,status,dailyrateindication,cycle,startTime,endTime,location,agreementstatus);
         if( !offerid || !name || !type || !status || !dailyrateindication ||!cycle || !startTime || !endTime || !location || !agreementstatus ){ 
@@ -279,15 +279,15 @@ $(function(){
             $.ajax({
                 url: "/users/acceptagreement",
                 method: "POST",
-                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:agreementstatus }
+                data: {offerid: offerid,name: name,type: type,status:status,dailyrateindication: dailyrateindication,cycle:cycle,startTime:startTime, endTime:endTime,location: location,agreementstatus:"Rejected" }
             }).done(function( data ) {
 
                 if ( data ) {
                     if(data.status == 'error'){
+
                         alert(data.message);
-                       
                     }else{
-                        window.location.href = "/users/Masteragreement";
+                        window.location.href = "/dashboard";
   
                     }
                 }
@@ -295,7 +295,41 @@ $(function(){
         }
     });
 
+    $("#bid").on('click', function(){
 
+
+        var positionname = $("#positionname").val();
+        var agreementid = $("#agreementid").val();
+        var level = $("#level").val();
+        var onsite = $("#onsite").val();
+        var remote = $("#remote").val();
+        var onsiteper = $("#onsiteper").val();
+        var validfrom = $("#validfrom").val();
+        var vailduntil = $("#vailduntil").val();
+        var biddingstatus = $("#biddingstatus").val();
+        if( !positionname || !agreementid || !level || !onsite || !remote ||!onsiteper || !validfrom || !vailduntil || !biddingstatus ){ 
+            console.log("didnt get data")
+            $("#msgDiv").show().html("All fields are required check.");  
+        } 
+        else{ 
+            $.ajax({
+                url: "/users/bidagreement",
+                method: "POST",
+                data: {positionname: positionname,agreementid: agreementid,level: level,onsite:onsite,remote: remote,onsiteper:onsiteper,validfrom:validfrom, vailduntil:vailduntil,biddingstatus: "Bidded" }
+            }).done(function( data ) {
+
+                if ( data ) {
+                    if(data.status == 'error'){
+
+                        alert(data.message);
+                    }else{
+                        window.location.href = "/dashboard";
+  
+                    }
+                }
+            });
+        }
+    });
 
     $("#addemployee").on('click', function(event){
         event.preventDefault();
@@ -338,40 +372,57 @@ $(function(){
         }
     });
 
-    $("#addoffer").on('click', function(){
-        var offerid = $("#addoffer").attr("offerid");
-        var PositionID = $("#addoffer").attr("PositionID");
-        var employee_name = $("#addoffer").attr("employee_name");
-        var provider_name = $("#addoffer").attr("provider_name");
-        var contactperson = $("#addoffer").attr("contactperson");
-        var externalperson = $("#addoffer").attr("externalperson");
-        var rate = $("#addoffer").attr("rate");
-        var notes = $("#addoffer").attr("notes");
-        var dateuntil = $("#addoffer").attr("dateuntil");
-        var document = $("#addoffer").attr("document");
-        if( !offerid || !PositionID || !employee_name || !provider_name || !contactperson ||!externalperson || !rate || !notes || !dateuntil || !document ){ 
-            console.log("didnt get data")
-            $("#msgDiv").show().html("All fields are required check.");  
-        } 
-        else{ 
+
+    // final post start
+    $("#submitoffer").on('click', function (event) {
+        event.preventDefault();
+        var employeeid = $("#employeeid").val();
+        var positionid = $("#positionid").val();
+        var agreementsid = $("#agreementsid").val();
+        var employee_name = $("#employee_name").val();
+        var provider_name = $("#provider_name").val();
+        var contactperson = $("#contactperson").val();
+        var externalperson = $("#externalperson").val();
+        var rate = $("#rate").val();
+        var notes = $("#notes").val();
+        var dateuntil = $("#dateuntil").val();
+        var document = $('#document').val();
+        
+
+
+        if (!employeeid || !positionid || !agreementsid || !employee_name || !provider_name || !contactperson || !externalperson||!rate || !notes || !dateuntil || !document) {
+            $("#msgDiv").show().html("All fields are required check.");
+        } else {
             console.log("i am in before ajax");
             $.ajax({
                 url: "/users/addoffer",
                 method: "POST",
-                data: {offerid: offerid,PositionID: PositionID,employee_name: employee_name,provider_name:provider_name,contactperson: contactperson,externalperson:externalperson,rate:rate, notes:notes,dateuntil: dateuntil,document:document }
-            }).done(function( data ) {
+                data: {
+                    employeeid: employeeid,
+                    positionid: positionid,
+                    agreementsid: agreementsid,
+                    employee_name: employee_name,
+                    provider_name: provider_name,
+                    contactperson: contactperson,
+                    externalperson: externalperson,
+                    rate: rate,
+                    notes: notes,
+                    dateuntil: dateuntil,
+                    document: document,
+                }
+            }).done(function (data) {
 
-                if ( data ) {
-                    if(data.status == 'error'){
+                if (data) {
+                    if (data.status == 'error') {
 
                         var errors = '<ul>';
-                        $.each( data.message, function( key, value ) {
-                            errors = errors +'<li>'+value.msg+'</li>';
+                        $.each(data.message, function (key, value) {
+                            errors = errors + '<li>' + value.msg + '</li>';
                         });
 
-                        errors = errors+ '</ul>';
+                        errors = errors + '</ul>';
                         $("#msgDiv").html(errors).show();
-                    }else{
+                    } else {
                         window.location.href = "/dashboard";
                     }
                 }
@@ -380,13 +431,55 @@ $(function(){
     });
 
 
-    $("#btnSelect").on('click',function(){
-        var currentRow=$(this).closest("tr");
-        console.log("currentRow",currentRow);
-        var col1=currentRow.find("td:eq(0)").html();
-        var col2=currentRow.find("td:eq(1)").html();
-        var col3=currentRow.find("td:eq(2)").html();
-        var data=col1+"\n"+col2+"\n"+col3;
-        alert(data);
-   });
+
+    // final post end
+
+
+    $("#addoffer").on('click', function(){
+
+        var radioVal = $('input[type=radio][name=radioaddoffer]:checked').val();
+        var emp = document.getElementById("empid" + radioVal);
+        var empVal = $(emp).val();
+
+        console.log(empVal);
+
+        // var offerid = $("#addoffer").attr("offerid");
+        // var PositionID = $("#addoffer").attr("PositionID");
+        // var employee_name = $("#addoffer").attr("employee_name");
+        // var provider_name = $("#addoffer").attr("provider_name");
+        // var contactperson = $("#addoffer").attr("contactperson");
+        // var externalperson = $("#addoffer").attr("externalperson");
+        // var rate = $("#addoffer").attr("rate");
+        // var notes = $("#addoffer").attr("notes");
+        // var dateuntil = $("#addoffer").attr("dateuntil");
+        // var document = $("#addoffer").attr("document");
+        // if( !offerid || !PositionID || !employee_name || !provider_name || !contactperson ||!externalperson || !rate || !notes || !dateuntil || !document ){ 
+        //     console.log("didnt get data")
+        //     $("#msgDiv").show().html("All fields are required check.");  
+        // } 
+        // else{ 
+        //     console.log("i am in before ajax");
+        //     $.ajax({
+        //         url: "/users/addoffer",
+        //         method: "POST",
+        //         data: {offerid: offerid,PositionID: PositionID,employee_name: employee_name,provider_name:provider_name,contactperson: contactperson,externalperson:externalperson,rate:rate, notes:notes,dateuntil: dateuntil,document:document }
+        //     }).done(function( data ) {
+
+        //         if ( data ) {
+        //             if(data.status == 'error'){
+
+        //                 var errors = '<ul>';
+        //                 $.each( data.message, function( key, value ) {
+        //                     errors = errors +'<li>'+value.msg+'</li>';
+        //                 });
+
+        //                 errors = errors+ '</ul>';
+        //                 $("#msgDiv").html(errors).show();
+        //             }else{
+        //                 window.location.href = "/dashboard";
+        //             }
+        //         }
+        //     });
+        // }
+    });
 });

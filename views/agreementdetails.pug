@@ -1,0 +1,67 @@
+extends layout
+
+block content
+   .container
+      h1.text-center.top-buffer Access Management Platform 
+      h2.text-center.top-buffer Agreement Details
+      form.form-horizontal(role="form", method="post")
+        .form-group
+          .alert.alert-danger(role='alert', id="msgDiv")
+        .form-group
+          label.col-sm-6.control-label(for="offerid") 
+           strong AgreementID
+          .col-sm-9
+            input#offerid.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.offerid)
+        .form-group
+          label.col-sm-6.control-label(for="name") 
+           strong Agreement Name
+          .col-sm-9
+            input#name.form-control(type="text"  autofocus="" readonly='' value=AgreementDetails.name)
+        .form-group
+          label.col-sm-6.control-label(for="type") 
+           strong Agreement Type
+          .col-sm-9
+            input#type.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.type)
+        .form-group
+          label.col-sm-6.control-label(for="status") 
+           strong Agreement Status
+          .col-sm-9
+            input#status.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.status)
+        .form-group
+          label.col-sm-6.control-label(for="dailyrateindication") 
+           strong Dailyrateindication
+          .col-sm-9
+            input#dailyrateindication.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.dailyrateindication)
+        .form-group
+          label.col-sm-6.control-label(for="cycle") 
+           strong Cycle
+          .col-sm-9
+            input#cycle.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.cycle)
+        .form-group
+          label.col-sm-6.control-label(for="startTime") 
+           strong startTime
+          .col-sm-9
+            input#startTime.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.startTime)
+        .form-group
+          label.col-sm-6.control-label(for="endTime") 
+           strong endTime
+          .col-sm-9
+            input#endTime.form-control(type="text"  autofocus="" readonly='' value=AgreementDetails.endTime)
+        .form-group
+          label.col-sm-6.control-label(for="location") 
+           strong location
+          .col-sm-9
+            input#location.form-control(type="text" autofocus="" readonly='' value=AgreementDetails.location)
+        .form-group
+          label.col-sm-6.control-label(for="agreementstatus") 
+           strong agreementstatus
+          .col-sm-9
+            input#agreementstatus.form-control(type="text"  autofocus="" readonly='' value=AgreementDetails.agreementstatus)
+        br
+        .form-group
+           .col-sm-9.col-sm-offset-3
+            button#acceptagreements.btn.btn-primary(type='button' ) Accept
+        br
+        .form-group
+           .col-sm-9.col-sm-offset-3
+           button#rejectagreements.btn.btn-primary(type='button' ) Reject

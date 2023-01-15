@@ -8,16 +8,17 @@ var crypto    = require('crypto'), hmac, signature;
  const addoffer =  (req, res) => {
     console.log("i am in employee");
     var document = {
-        offerid :  req.body.offerid,
-        PositionID:  req.body.PositionID,
-        employee_name : req.body.employee_name,
-        provider_name : req.body.provider_name,
-        contactperson : req.body.contactperson,
-        externalperson : req.body.externalperson,
-        rate : req.body.rate,
-        notes : req.body.notes,
-        dateuntil : req.body.dateuntil,
-        document : req.body.document,
+      employeeid :  req.body.employeeid,
+      positionid:  req.body.positionid,
+      agreementsid : req.body.agreementsid,
+      employee_name : req.body.employee_name,
+      provider_name : req.body.provider_name,
+      contactperson : req.body.contactperson,
+      externalperson : req.body.externalperson,
+      rate : req.body.rate,
+      notes : req.body.notes,
+      dateuntil : req.body.dateuntil,
+      document : req.body.document
       };
       const id =req.session.passport.user;
       console.log(id);
@@ -94,4 +95,74 @@ var crypto    = require('crypto'), hmac, signature;
 
     
 };
-module.exports = {addoffer};
+
+const getroffers=  (req, res) => {
+
+    var querydata =req.query;
+    if (querydata.provider == "A")
+
+    {
+        OfferEmployee.Provider_A_offer.find()
+        .exec((err, data) => {
+        if (data) 
+        {
+          res.send(data);
+        }
+        else
+        {
+            res.json({message : "No Offers currently", status : "failure"});
+
+        }
+        })
+    }
+    else if (querydata.provider == "B")
+
+    {
+        OfferEmployee.Provider_B_offer.find()
+            .exec((err, data) => {
+            if (data) 
+            {
+              res.send(data);
+            }
+            else
+            {
+                res.json({message : "No Offers currently", status : "failure"});
+
+            }
+            })
+    }
+    else if (querydata.provider == "C")
+
+    {
+        OfferEmployee.Provider_C_offer.find()
+            .exec((err, data) => {
+            if (data) 
+            {
+              res.send(data);
+            }
+            else
+            {
+                res.json({message : "No Offers currently", status : "failure"});
+
+            }
+            })
+    }
+    else if (querydata.provider == "D")
+
+    {
+        OfferEmployee.Provider_D_offer.find()
+            .exec((err, data) => {
+            if (data) 
+            {
+              res.send(data);
+            }
+            else
+            {
+                res.json({message : "No Offers currently", status : "failure"});
+
+            }
+            })
+    }
+
+};
+module.exports = {addoffer,getroffers};

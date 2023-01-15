@@ -27,31 +27,16 @@ table#agreementtable(style='width:100%')
   tr
     th ID
     th Agreement Name
-    th Type 
-    th Status
-    th Daily rate Indication 
-    th Cycle
-    th StartTime 
-    th EndTime 
-    th Location 
-    th agreementstatus
-    th Accept/Reject
+    th Details
 
   each user in users
     tr
     td #{user.offerid}
     td #{user.name}
-    td #{user.type}
-    td #{user.status}
-    td #{user.dailyrateindication}
-    td #{user.cycle}
-    td #{user.startTime}
-    td #{user.endTime}
-    td #{user.location}
-    td #{user.agreementstatus}
     td 
-     button#acceptagreements.btn.btn-primary(type='button' offerid=`${user.offerid}` name=`${user.name}` agreementtype=`${user.type}` status=`${user.status}` dailyrateindication =`${user.dailyrateindication}` cycle =`${user.cycle}` startTime =`${user.startTime}` endTime =`${user.endTime}` location =`${user.location}` agreementstatus =`${"Accepted"}`) Accept
-     button#rejectagreements.btn.btn-primary(type='button' offerid=`${user.offerid}` name=`${user.name}` agreementtype=`${user.type}` status=`${user.status}` dailyrateindication =`${user.dailyrateindication}` cycle =`${user.cycle}` startTime =`${user.startTime}` endTime =`${user.endTime}` location =`${user.location}` agreementstatus =`${"Rejected"}`) Reject
+     li
+      a(href=`/users/agreementdetails?offerid=${user.offerid}&name=${user.name}&type=${user.type}&status=${user.status}&dailyrateindication=${user.dailyrateindication}&cycle=${user.cycle}&startTime=${user.startTime}&endTime=${user.endTime}&location=${user.location}&agreementstatus=${user.agreementstatus}`) Full Agreement Details
+    
 
 
     

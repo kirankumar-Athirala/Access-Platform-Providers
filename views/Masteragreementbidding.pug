@@ -27,33 +27,13 @@ table#agreementdetailstable(style='width:100%')
   tr
     th PositionName
     th agreementsId
-    th Level
-    th Onsite pay
-    th remote pay
-    th Onsite Percentage
-    th Offsite Percentage
-    th validateFrom
-    th validateUntil 
+    th Details 
 
   each user in users
     tr
-    td #{user.PositionName}
-    td #{user.agreementsId}
+    td #{user.positionname}
+    td #{user.agreementid}
     td 
-     input#level.form-control(type="text" name="level" placeholder="level" autofocus="" value="")
-    td 
-     input#onsitepay.form-control(type="text" name="onsitepay" placeholder="Onsite pay" autofocus="" value="")
-    td 
-     input#remotepay.form-control(type="text" name="remotepay" placeholder="remotepay" autofocus="" value="")
-    td 
-     input#onsiteper.form-control(type="text" name="onsiteper" placeholder="onsite percentage" autofocus="" value="")
-    td 
-     input#remoteper.form-control(type="text" name="remoteper" placeholder="remote percentage" autofocus="" value="")
-    td 
-     input#validateFrom.form-control(type="date")
-    td 
-     input#validateUntil.form-control(type="date")
-    td 
-     button#agreementdetails.btn.btn-primary(type='button' agreementstatus =`${"Accepted"}`) Send
+      a(href=`/users/biddingdetails?positionname=${user.positionname}&agreementid=${user.agreementid}&level=${user.level}&onsite=${user.onsite}&remote=${user.remote}&onsiteper=${user.onsiteper}&validfrom=${user.validfrom}&vailduntil=${user.vailduntil}&biddingstatus=${user.biddingstatus}`) Full Details
 
     

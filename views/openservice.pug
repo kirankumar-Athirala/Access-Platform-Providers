@@ -16,13 +16,15 @@ h1.text-center.top-buffer Access Management Platform
 h1.text-center.top-buffer #{title}
 table(style='width:100%')
   tr
-    th ID
+    th position ID
+    th agreements ID
     th Name 
     th ADD
   each detail in details
     tr
+    td #{detail._id}
     td #{detail.agreementsId}
     td #{detail.PositionName}
     td
      li
-      a(href=`/users/offerEmployee?id=${detail._id}`) offerEmployee
+      a(href=`/users/offerEmployee?positionid=${detail._id}&agreementsid=${detail.agreementsId}`) offerEmployee
