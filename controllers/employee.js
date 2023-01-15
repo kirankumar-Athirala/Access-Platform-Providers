@@ -16,6 +16,7 @@ var crypto    = require('crypto'), hmac, signature;
         dateuntil: req.body.dateuntil, 
         notes:  req.body.notes, 
         document: req.body.document,
+        status: "Available",
       };
       const id =req.session.passport.user;
       console.log(id);
@@ -111,10 +112,9 @@ const GetEmployeeData =  (req, res) => {
         
        .exec((err,data)=>{
         if(data){
-          res.render('offerEmployee', {
-            title: 'offerEmployee',
+          res.render('employeestatus', {
+            title: 'Employee Details',
             'employees':data,
-            "PositionID" : req.query.id
           })
         }
 
@@ -130,10 +130,9 @@ const GetEmployeeData =  (req, res) => {
       
      .exec((err,data)=>{
       if(data){
-        res.render('offerEmployee', {
-          title: 'offerEmployee',
+        res.render('employeestatus', {
+          title: 'Employee Details',
           'employees':data,
-          "PositionID" : req.query.id
         })
       }
 
@@ -149,10 +148,9 @@ User.Provider_C.findById(id)
     
    .exec((err,data)=>{
     if(data){
-      res.render('offerEmployee', {
-        title: 'offerEmployee',
+      res.render('employeestatus', {
+        title: 'Employee Details',
         'employees':data,
-        "PositionID" : req.query.id
       })
     }
 
@@ -167,10 +165,9 @@ User.Provider_D.findById(id)
     
    .exec((err,data)=>{
     if(data){
-      res.render('offerEmployee', {
-        title: 'offerEmployee',
+      res.render('employeestatus', {
+        title: 'Employee Details',
         'employees':data,
-        "PositionID" : req.query.id
       })
     }
 

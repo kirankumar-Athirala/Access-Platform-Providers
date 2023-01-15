@@ -1,0 +1,40 @@
+doctype html
+head
+ link(rel="icon", href="/images/favicon.ico")
+ style.
+  body { 
+    margin: 0;  
+    padding: 0;  
+    background-color:#6abadeba;
+    font-family: 'Arial';  
+  } 
+  h1,h2,{
+    text-align:center;
+
+    }
+  table, th, td {
+  border:1px solid blue;
+  }
+
+body
+  block content
+  script(src='http://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='/javascripts/app.js')
+h1 Access Management Platform 
+h2 Agreement
+
+table#agreementtable(style='width:100%')
+  tr
+    th Employee Name
+    th Available Till
+    th Status
+
+  each employee in employees
+    tr
+    td #{employee.employee_name}
+    td #{employee.dateuntil}
+    td #{employee.status}
+    
+
+
+    

@@ -11,6 +11,7 @@ var userSchemas = new Schema({
     dateuntil: { type: Date , required: [true, 'date  must be provided']},
     notes: { type: String,  required: [true, 'notes must be provided'] },
     document: { type: String },
+    status: { type: String },
 });
 
 const provider_a = mongoose.connection.useDb('provider-a');

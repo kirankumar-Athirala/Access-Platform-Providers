@@ -146,12 +146,22 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
   // const data = JSON.stringify(req.query)
   // console.log(data)
-  usercontroller.GetEmployeeData(req,res);
+  employeecontroller.GetEmployeeData(req,res);
   // res.render('offerEmployee', {
   //   title: 'offerEmployee',
   //   data : req.query.id
   // })
   });
+
+  router.get('/Employeestatus', ensureAuthenticated, function(req, res,next){
+    // const data = JSON.stringify(req.query)
+    // console.log(data)
+    employeecontroller.GetEmployeeData(req,res);
+    // res.render('offerEmployee', {
+    //   title: 'offerEmployee',
+    //   data : req.query.id
+    // })
+    });
 router.get('/submitoffer', ensureAuthenticated, function(req, res,next){
      res.render('submitoffer', {
       title: 'submitoffer',
