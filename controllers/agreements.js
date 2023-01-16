@@ -433,7 +433,7 @@ const biddingdata =  (agrements,req,res) => {
 
                   Agreements.Provider_D_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
                   .exec((err, data) => {
-                    console.log("testing bidding-1:",data.offerid,data.agreementstatus,agreement.agreementsId);
+
                   if (data)
                   {
                     console.log("testing bidding-2:",agreement.PositionName,agreement.agreementsId);
@@ -663,8 +663,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider A");
             console.log("i am in employee provider A");
-            Agreement_Bids.Provider_A_Agreement_Bids.find(
-                { $and: [ {"positionname":req.body.positionname}, { "agreementid":req.body.agreementid } ] }
+            Agreement_Bids.Provider_A_Agreement_Bids.find({"positionname":req.body.positionname,"agreementid":req.body.agreementid }
                 )
             .exec((err, data) => {
                 if(data)
@@ -676,7 +675,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({ $and: [ {"positionname":req.body.positionname}, { "agreementid":req.body.agreementid } ] }, 
+                    Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
                         {
                            $set : document
                         },
@@ -706,7 +705,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider B");
             console.log("i am in employee provider B");
-            Agreements.Provider_B_Agreements.findOne({offerid:req.body.offerid})
+            Agreements.Provider_B_Agreements.findOne({"positionname":req.body.positionname,"agreementid":req.body.agreementid })
             .exec((err, data) => {
                 if(data)
             {
@@ -717,7 +716,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreements.Provider_B_Agreements.findOneAndUpdate({"offerid":req.body.offerid}, 
+                    Agreements.Provider_B_Agreements.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
                         {
                            $set : document
                         },
@@ -742,7 +741,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider C");
             console.log("i am in employee provider C");
-            Agreements.Provider_C_Agreements.findOne({offerid:req.body.offerid})
+            Agreements.Provider_C_Agreements.findOne({"positionname":req.body.positionname,"agreementid":req.body.agreementid })
             .exec((err, data) => {
                 if(data)
             {
@@ -753,7 +752,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreements.Provider_C_Agreements.findOneAndUpdate({"offerid":req.body.offerid}, 
+                    Agreements.Provider_C_Agreements.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
                         {
                            $set : document
                         },
@@ -1069,74 +1068,6 @@ const getagreementbidsforoffer=  (req, res) => {
 };
 
 
-const getroffers=  (req, res) => {
 
-    var querydata =req.query;
-    if (querydata.provider == "A")
-
-    {
-        Agreement_Bids.Provider_A_Agreement_Bids.find({biddingstatus: 'Bidded'})
-        .exec((err, data) => {
-        if (data) 
-        {
-          res.send(data);
-        }
-        else
-        {
-            res.json({message : "No Bidded Offers.", status : "failure"});
-
-        }
-        })
-    }
-    else if (querydata.provider == "B")
-
-    {
-        Agreement_Bids.Provider_B_Agreement_Bids.find({biddingstatus: 'Bidded'})
-            .exec((err, data) => {
-            if (data) 
-            {
-              res.send(data);
-            }
-            else
-            {
-                res.json({message : "No Bidded Offers.", status : "failure"});
-
-            }
-            })
-    }
-    else if (querydata.provider == "C")
-
-    {
-        Agreement_Bids.Provider_C_Agreement_Bids.find({biddingstatus: 'Bidded'})
-            .exec((err, data) => {
-            if (data) 
-            {
-              res.send(data);
-            }
-            else
-            {
-                res.json({message : "No Bidded Offers.", status : "failure"});
-
-            }
-            })
-    }
-    else if (querydata.provider == "D")
-
-    {
-        Agreement_Bids.Provider_D_Agreement_Bids.find({biddingstatus: 'Bidded'})
-            .exec((err, data) => {
-            if (data) 
-            {
-              res.send(data);
-            }
-            else
-            {
-                res.json({message : "No Bidded Offers.", status : "failure"});
-
-            }
-            })
-    }
-
-};
 
 module.exports = {addagreement,saveagreements,updateagreement,biddingdata,getagreement,getagreementbids,updatebid,getagreementbidsforoffer};

@@ -146,7 +146,7 @@ router.get('/Updateprofile', ensureAuthenticated, function(req, res,next){
 router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
   // const data = JSON.stringify(req.query)
   // console.log(data)
-  employeecontroller.GetEmployeeData(req,res);
+  usercontroller.GetEmployeeData(req,res);
   // res.render('offerEmployee', {
   //   title: 'offerEmployee',
   //   data : req.query.id

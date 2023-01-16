@@ -1,8 +1,29 @@
-extends layout
+doctype html
+head
+ link(rel="icon", href="/images/favicon.ico")
+ style.
+  body { 
+    margin: 0;  
+    padding: 0;  
+    background-color:#6abadeba;
+    font-family: 'Arial';  
+  } 
+  h1,h2,{
+    text-align:center;
 
-block content
- .container
-   table(style='width:100%',border='1')
+    }
+  table, th, td {
+  border:1px solid blue;
+  }
+
+body
+  block content
+  script(src='http://code.jquery.com/jquery-3.3.1.min.js')
+  script(src='/javascripts/app.js')
+
+h1 Access Management Platform 
+h2 Available Employees For Offer
+table(style='width:100%',border='1')
     tr
      th Employee ID
      th PositionID
@@ -20,4 +41,4 @@ block content
      td #{employee.provider_name}
      td #{employee.dateuntil}
      td
-      a(href=`/users/submitoffer?employee_id=${employee._id}&positionid=${allid.positionid}&agreementsid=${allid.agreementsid}&employee_name=${employee.employee_name}&provider_name=${employee.provider_name}&contactperson=${employee.contactperson}&externalperson=${employee.externalperson}&rate=${employee.rate}&notes=${employee.notes}&dateuntil=${employee.dateuntil}&document=${employee.document}`) select
+      a(href=`/users/submitoffer?employee_id=${employee._id}&positionid=${allid.positionid}&agreementsid=${allid.agreementsid}&employee_name=${employee.employee_name}&provider_name=${employee.provider_name}&contactperson=${employee.contactperson}&externalperson=${employee.externalperson}&rate=${employee.rate}&notes=${employee.notes}&dateuntil=${employee.dateuntil}&document=${employee.document}`) select  

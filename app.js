@@ -17,7 +17,7 @@ var users = require('./routes/users');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://agile:agileproject@localhost:3000/?authSource=admin');
+mongoose.connect('mongodb+srv://agile:agileproject@cluster0.9ke8z3d.mongodb.net/?retryWrites=true&w=majority');
 // mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-b?authSource=admin');
 // mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-c?authSource=admin');
 // mongoose.connect('mongodb://agile:agileproject@localhost:3000/provider-d?authSource=admin');
