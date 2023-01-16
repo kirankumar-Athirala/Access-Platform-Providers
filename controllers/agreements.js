@@ -488,7 +488,6 @@ const updateagreement=  (req, res) => {
                               if (err) throw err;
                                  // Some handle 
                                  console.log("i am in employee provider A completed");
-                                 console.log("user",user.agreementstatus);
                               res.json({message : "Data saved successfully.", status : "success"});
                                }
                             );
@@ -529,7 +528,6 @@ const updateagreement=  (req, res) => {
                               if (err) throw err;
                                  // Some handle 
                                  console.log("i am in employee provider B completed");
-                                 console.log("user",user.agreementstatus);
                               res.json({message : "Data saved successfully.", status : "success"});
                                }
                             );
@@ -565,7 +563,6 @@ const updateagreement=  (req, res) => {
                               if (err) throw err;
                                  // Some handle 
                                  console.log("i am in employee provider C completed");
-                                 console.log("user",user.agreementstatus);
                               res.json({message : "Data saved successfully.", status : "success"});
                                }
                             );
@@ -601,7 +598,6 @@ const updateagreement=  (req, res) => {
                               if (err) throw err;
                                  // Some handle 
                                  console.log("i am in employee provider D completed");
-                                 console.log("user",user.agreementstatus);
                               res.json({message : "Data saved successfully.", status : "success"});
                                }
                             );
@@ -663,7 +659,6 @@ const updatebid=  (req, res) => {
                           if (err) throw err;
                              // Some handle 
                              console.log("i am in employee provider A completed");
-                             console.log("user",user.agreementstatus);
                           res.json({message : "Data saved successfully.", status : "success"});
                            }
                         );
@@ -704,7 +699,6 @@ const updatebid=  (req, res) => {
                           if (err) throw err;
                              // Some handle 
                              console.log("i am in employee provider B completed");
-                             console.log("user",user.agreementstatus);
                           res.json({message : "Data saved successfully.", status : "success"});
                            }
                         );
@@ -740,7 +734,6 @@ const updatebid=  (req, res) => {
                           if (err) throw err;
                              // Some handle 
                              console.log("i am in employee provider C completed");
-                             console.log("user",user.agreementstatus);
                           res.json({message : "Data saved successfully.", status : "success"});
                            }
                         );
@@ -777,7 +770,6 @@ const updatebid=  (req, res) => {
                           if (err) throw err;
                              // Some handle 
                              console.log("i am in employee provider D completed");
-                             console.log("user",user.agreementstatus);
                           res.json({message : "Data saved successfully.", status : "success"});
                            }
                         );

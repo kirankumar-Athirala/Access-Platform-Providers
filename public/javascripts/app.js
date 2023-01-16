@@ -299,6 +299,7 @@ $(function(){
 
 
         var positionname = $("#positionname").val();
+        var positionid = $("#positionid").val();
         var agreementid = $("#agreementid").val();
         var level = $("#level").val();
         var onsite = $("#onsite").val();
@@ -307,7 +308,7 @@ $(function(){
         var validfrom = $("#validfrom").val();
         var vailduntil = $("#vailduntil").val();
         var biddingstatus = $("#biddingstatus").val();
-        if( !positionname || !agreementid || !level || !onsite || !remote ||!onsiteper || !validfrom || !vailduntil || !biddingstatus ){ 
+        if( !positionname || !agreementid || !positionid || !level || !onsite || !remote ||!onsiteper || !validfrom || !vailduntil || !biddingstatus ){ 
             console.log("didnt get data")
             $("#msgDiv").show().html("All fields are required check.");  
         } 
@@ -315,7 +316,7 @@ $(function(){
             $.ajax({
                 url: "/users/bidagreement",
                 method: "POST",
-                data: {positionname: positionname,agreementid: agreementid,level: level,onsite:onsite,remote: remote,onsiteper:onsiteper,validfrom:validfrom, vailduntil:vailduntil,biddingstatus: "Bidded" }
+                data: {positionname: positionname,positionid:positionid,agreementid: agreementid,level: level,onsite:onsite,remote: remote,onsiteper:onsiteper,validfrom:validfrom, vailduntil:vailduntil,biddingstatus: "Bidded" }
             }).done(function( data ) {
 
                 if ( data ) {
