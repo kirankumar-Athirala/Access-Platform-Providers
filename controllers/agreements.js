@@ -110,10 +110,9 @@ const saveagreements =  (agrements,req,res) => {
             {
                 agrements.forEach(function (agreement) {   
                     var document = {
-                        offerid :  agreement.offerid,
+                        offerid :  agreement._id,
                         name:  agreement.name,
                         type : agreement.type,
-                        dailyrateindication : agreement.dailyrateindication,
                         status : agreement.status,
                         cycle : agreement.cycle,
                         startTime : agreement.startTime,
@@ -122,7 +121,7 @@ const saveagreements =  (agrements,req,res) => {
                         agreementstatus: "pending"
                       };
 
-                      Agreements.Provider_A_Agreements.findOne({"offerid":agreement.offerid})
+                      Agreements.Provider_A_Agreements.findOne({"offerid":agreement._id})
                       .exec((err, data) => {
                       if (!data || data.length==0)
                       {
@@ -153,10 +152,9 @@ const saveagreements =  (agrements,req,res) => {
             {
                 agrements.forEach(function (agreement) {   
                     var document = {
-                        offerid :  agreement.offerid,
+                        offerid :  agreement._id,
                         name:  agreement.name,
                         type : agreement.type,
-                        dailyrateindication : agreement.dailyrateindication,
                         status : agreement.status,
                         cycle : agreement.cycle,
                         startTime : agreement.startTime,
@@ -165,7 +163,7 @@ const saveagreements =  (agrements,req,res) => {
                         agreementstatus: "pending"
                       };
 
-                      Agreements.Provider_B_Agreements.findOne({"offerid":agreement.offerid})
+                      Agreements.Provider_B_Agreements.findOne({"offerid":agreement._id})
                       .exec((err, data) => {
                       if (!data || data.length==0)
                       {
@@ -190,10 +188,9 @@ const saveagreements =  (agrements,req,res) => {
             {
                 agrements.forEach(function (agreement) {   
                     var document = {
-                        offerid :  agreement.offerid,
+                        offerid :  agreement._id,
                         name:  agreement.name,
                         type : agreement.type,
-                        dailyrateindication : agreement.dailyrateindication,
                         status : agreement.status,
                         cycle : agreement.cycle,
                         startTime : agreement.startTime,
@@ -202,7 +199,7 @@ const saveagreements =  (agrements,req,res) => {
                         agreementstatus: "pending"
                       };
 
-                      Agreements.Provider_C_Agreements.findOne({"offerid":agreement.offerid})
+                      Agreements.Provider_C_Agreements.findOne({"offerid":agreement._id})
                       .exec((err, data) => {
                       if (!data || data.length==0)
                       {
@@ -228,10 +225,9 @@ const saveagreements =  (agrements,req,res) => {
 
                 agrements.forEach(function (agreement) {   
                     var document = {
-                        offerid :  agreement.offerid,
+                        offerid :  agreement._id,
                         name:  agreement.name,
                         type : agreement.type,
-                        dailyrateindication : agreement.dailyrateindication,
                         status : agreement.status,
                         cycle : agreement.cycle,
                         startTime : agreement.startTime,
@@ -240,7 +236,7 @@ const saveagreements =  (agrements,req,res) => {
                         agreementstatus: "pending"
                       };
 
-                      Agreements.Provider_D_Agreements.findOne({"offerid":agreement.offerid})
+                      Agreements.Provider_D_Agreements.findOne({"offerid":agreement._id})
                       .exec((err, data) => {
                       if (!data || data.length==0)
                       {
@@ -278,14 +274,10 @@ const biddingdata =  (agrements,req,res) => {
 
             agrements.forEach(function (agreement) {   
                 var document = {
-                    positionname :  agreement.PositionName,
+                    positionid :  agreement._id,
+                    positionname :  agreement.name,
                     agreementid:  agreement.agreementsId,
-                    level:agreement.level,
-                    onsite : agreement.Onsite,
-                    remote : agreement.remote,
-                    onsiteper : agreement.OnsitePercentage,
-                    validfrom : agreement.validateFrom,
-                    vailduntil : agreement.validateUntil,
+                    type:agreement.type,
                     biddingstatus: "pending"
                   };
 
@@ -293,7 +285,7 @@ const biddingdata =  (agrements,req,res) => {
                   .exec((err, data) => {
                   if (data )
                   {
-                    Agreement_Bids.Provider_A_Agreement_Bids.findOne({"agreementid":agreement.agreementid})
+                    Agreement_Bids.Provider_A_Agreement_Bids.findOne({"positionid":agreement._id})
                       .exec((err, data) => {
                       if (!data || data.length==0)
                       {
@@ -330,14 +322,10 @@ const biddingdata =  (agrements,req,res) => {
         {
             agrements.forEach(function (agreement) {   
                 var document = {
-                    positionname :  agreement.PositionName,
+                    positionid :  agreement._id,
+                    positionname :  agreement.name,
                     agreementid:  agreement.agreementsId,
-                    level:agreement.level,
-                    onsite : agreement.Onsite,
-                    remote : agreement.remote,
-                    onsiteper : agreement.OnsitePercentage,
-                    validfrom : agreement.validateFrom,
-                    vailduntil : agreement.validateUntil,
+                    type:agreement.type,
                     biddingstatus: "pending"
                   };
 
@@ -345,7 +333,7 @@ const biddingdata =  (agrements,req,res) => {
                   .exec((err, data) => {
                   if (data )
                   {
-                    Agreement_Bids.Provider_B_Agreement_Bids.findOne({"agreementid":agreement.agreementid})
+                    Agreement_Bids.Provider_B_Agreement_Bids.findOne({"positionid":agreement._id})
                     .exec((err, data) => {
                     if (!data || data.length==0)
                     {
@@ -375,14 +363,10 @@ const biddingdata =  (agrements,req,res) => {
         {
             agrements.forEach(function (agreement) {   
                 var document = {
-                    positionname :  agreement.PositionName,
+                    positionid :  agreement._id,
+                    positionname :  agreement.name,
                     agreementid:  agreement.agreementsId,
-                    level:agreement.level,
-                    onsite : agreement.Onsite,
-                    remote : agreement.remote,
-                    onsiteper : agreement.OnsitePercentage,
-                    validfrom : agreement.validateFrom,
-                    vailduntil : agreement.validateUntil,
+                    type:agreement.type,
                     biddingstatus: "pending"
                   };
 
@@ -390,7 +374,7 @@ const biddingdata =  (agrements,req,res) => {
                   .exec((err, data) => {
                   if (data )
                   {
-                    Agreement_Bids.Provider_C_Agreement_Bids.findOne({"agreementid":agreement.agreementid})
+                    Agreement_Bids.Provider_C_Agreement_Bids.findOne({"positionid":agreement._id})
                     .exec((err, data) => {
                     if (!data || data.length==0)
                     {
@@ -420,14 +404,10 @@ const biddingdata =  (agrements,req,res) => {
         {
             agrements.forEach(function (agreement) {   
                 var document = {
-                    positionname :  agreement.PositionName,
+                    positionid :  agreement._id,
+                    positionname :  agreement.name,
                     agreementid:  agreement.agreementsId,
-                    level:agreement.level,
-                    onsite : agreement.Onsite,
-                    remote : agreement.remote,
-                    onsiteper : agreement.OnsitePercentage,
-                    validfrom : agreement.validateFrom,
-                    vailduntil : agreement.validateUntil,
+                    type:agreement.type,
                     biddingstatus: "pending"
                   };
 
@@ -436,9 +416,8 @@ const biddingdata =  (agrements,req,res) => {
 
                   if (data)
                   {
-                    console.log("testing bidding-2:",agreement.PositionName,agreement.agreementsId);
 
-                    Agreement_Bids.Provider_D_Agreement_Bids.findOne({"positionname":agreement.PositionName, "agreementid":agreement.agreementsId }
+                    Agreement_Bids.Provider_D_Agreement_Bids.findOne({"positionid":agreement._id}
                         )
                       .exec((err, data) => {
                     console.log("testing bidding-3:",data);
@@ -474,7 +453,7 @@ const biddingdata =  (agrements,req,res) => {
 const updateagreement=  (req, res) => {
 
         var document = {
- 
+            dailyrateindication: req.body.dailyrateindication,
             agreementstatus: req.body.agreementstatus,
           };
           const id =req.session.passport.user;
@@ -663,7 +642,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider A");
             console.log("i am in employee provider A");
-            Agreement_Bids.Provider_A_Agreement_Bids.find({"positionname":req.body.positionname,"agreementid":req.body.agreementid }
+            Agreement_Bids.Provider_A_Agreement_Bids.find({"positionid":req.body.positionid}
                 )
             .exec((err, data) => {
                 if(data)
@@ -675,7 +654,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
+                    Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
                         {
                            $set : document
                         },
@@ -705,7 +684,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider B");
             console.log("i am in employee provider B");
-            Agreements.Provider_B_Agreements.findOne({"positionname":req.body.positionname,"agreementid":req.body.agreementid })
+            Agreements.Provider_B_Agreements.findOne({"positionid":req.body.positionid})
             .exec((err, data) => {
                 if(data)
             {
@@ -716,7 +695,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreements.Provider_B_Agreements.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
+                    Agreements.Provider_B_Agreements.findOneAndUpdate({"positionid":req.body.positionid}, 
                         {
                            $set : document
                         },
@@ -741,7 +720,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider C");
             console.log("i am in employee provider C");
-            Agreements.Provider_C_Agreements.findOne({"positionname":req.body.positionname,"agreementid":req.body.agreementid })
+            Agreements.Provider_C_Agreements.findOne({"positionid":req.body.positionid})
             .exec((err, data) => {
                 if(data)
             {
@@ -752,7 +731,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreements.Provider_C_Agreements.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
+                    Agreements.Provider_C_Agreements.findOneAndUpdate({"positionid":req.body.positionid}, 
                         {
                            $set : document
                         },
@@ -777,7 +756,7 @@ const updatebid=  (req, res) => {
         {
             console.log("i am in employee provider D");
             console.log("i am in employee provider D");
-            Agreement_Bids.Provider_D_Agreement_Bids.findOne({"positionname":req.body.positionname,"agreementid":req.body.agreementid }
+            Agreement_Bids.Provider_D_Agreement_Bids.findOne({"positionid":req.body.positionid}
                 )
             .exec((err, data) => {
                 if(data)
@@ -789,7 +768,7 @@ const updatebid=  (req, res) => {
                 }
                 else
                 {
-                    Agreement_Bids.Provider_D_Agreement_Bids.findOneAndUpdate({"positionname":req.body.positionname,"agreementid":req.body.agreementid }, 
+                    Agreement_Bids.Provider_D_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
                         {
                            $set : document
                         },

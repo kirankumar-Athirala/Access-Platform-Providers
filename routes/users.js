@@ -12,6 +12,7 @@ var usercontroller = require('../controllers/index');
 var employeecontroller = require('../controllers/employee');
 var agreementcontroller = require('../controllers/agreements');
 var offercontroller = require('../controllers/offer');
+var openservicecontroller = require('../controllers/openservice');
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
@@ -25,56 +26,53 @@ router.get('/register', forwardAuthenticated, (req, res) =>  res.render('index',
 
 router.get('/Masteragreement', ensureAuthenticated, function(req, res,){
 
-  // async function getagreements(){
-  //   const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
-  //   const data = await posts.json()
-  //   res.render('Masteragreement',{
-  //   title:"Masteragreements",
-  //   details: data
-  // })
-  //  }
-  //  getagreements()
-  data = [
-    {
-    "offerid": "63836197a3f23cddb9e961fd",
-    "name": "Web Application development",
-    "type": "Team",
-    "dailyrateindication": "100",
-    "status": "Published",
-    "cycle": "1",
-    "startTime": "2019-04-05",
-    "endTime": "2015-12-01",
-    "location": "Frankfurt"
-    ,
+  async function getagreements(req,res){
+    const posts = await fetch("https://provider-management-platform-server.onrender.com/agreements");
+    const data = await posts.json()
+    agreementcontroller.saveagreements(data,req,res);
+   }
+   getagreements(req,res);
+  // data = [
+  //   {
+  //   "offerid": "63836197a3f23cddb9e961fd",
+  //   "name": "Web Application development",
+  //   "type": "Team",
+  //   "dailyrateindication": "100",
+  //   "status": "Published",
+  //   "cycle": "1",
+  //   "startTime": "2019-04-05",
+  //   "endTime": "2015-12-01",
+  //   "location": "Frankfurt"
+  //   ,
 
-  },
-  {
-    "offerid": "63836197a3f23cddb9e961fy",
-    "name": "Game development",
-    "type": "Team",
-    "status": "Published",
-    "dailyrateindication": "450",
-    "cycle": "1",
-    "startTime": "2019-04-05",
-    "endTime": "2015-12-01",
-    "location": "Frankfurt"
-    ,
+  // },
+  // {
+  //   "offerid": "63836197a3f23cddb9e961fy",
+  //   "name": "Game development",
+  //   "type": "Team",
+  //   "status": "Published",
+  //   "dailyrateindication": "450",
+  //   "cycle": "1",
+  //   "startTime": "2019-04-05",
+  //   "endTime": "2015-12-01",
+  //   "location": "Frankfurt"
+  //   ,
 
-  },
+  // },
 
-  {
-    "offerid": "63836197a3f23cddb9e961fz",
-    "name": " AI development",
-    "type": "Team",
-    "status": "Published",
-    "dailyrateindication": "950",
-    "cycle": "1",
-    "startTime": "2019-04-05",
-    "endTime": "2015-12-01",
-    "location": "Muncih"
-    ,
+  // {
+  //   "offerid": "63836197a3f23cddb9e961fz",
+  //   "name": " AI development",
+  //   "type": "Team",
+  //   "status": "Published",
+  //   "dailyrateindication": "950",
+  //   "cycle": "1",
+  //   "startTime": "2019-04-05",
+  //   "endTime": "2015-12-01",
+  //   "location": "Muncih"
+  //   ,
 
-  }]
+  // }]
 
 
 
@@ -90,41 +88,43 @@ router.get('/Masteragreement', ensureAuthenticated, function(req, res,){
   //   agreementcontroller.getagreement(req,res);
   // }
 
-  agreementcontroller.saveagreements(data,req,res);
-
   
   agreementcontroller.getagreement(req,res);
   //agreementcontroller.getagreement(req,res);
 });
 
 router.get('/Masteragreementbidding', ensureAuthenticated, function(req, res,next){
-
-  data = [
-    {
-      "PositionName":"Backend Developer",
-      "agreementsId": "63836197a3f23cddb9e961fd",
-      "level":1,
-      "Onsite":"950",
-      "remote":"900",
-      "OnsitePercentage":"100%",
-      "validateFrom":"2015-12-01",
-      "validateUntil": "2019-04-05"
+  async function getagreementbids(req,res){
+    const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
+    const data = await posts.json()
+    agreementcontroller.biddingdata(data,req,res);
+   }
+   getagreementbids(req,res);
+  // data = [
+  //   {
+  //     "PositionName":"Backend Developer",
+  //     "agreementsId": "63836197a3f23cddb9e961fd",
+  //     "level":1,
+  //     "Onsite":"950",
+  //     "remote":"900",
+  //     "OnsitePercentage":"100%",
+  //     "validateFrom":"2015-12-01",
+  //     "validateUntil": "2019-04-05"
   
-    },
-    {
-      "PositionName":"Frontend Developer",
-      "agreementsId": "63836197a3f23cddb9e961fd",
-      "level":2,
-      "Onsite":"1000",
-      "remote":"1100",
-      "OnsitePercentage":"80%",
-      "validateFrom":"2015-12-01",
-      "validateUntil": "2019-04-05"
+  //   },
+  //   {
+  //     "PositionName":"Frontend Developer",
+  //     "agreementsId": "63836197a3f23cddb9e961fd",
+  //     "level":2,
+  //     "Onsite":"1000",
+  //     "remote":"1100",
+  //     "OnsitePercentage":"80%",
+  //     "validateFrom":"2015-12-01",
+  //     "validateUntil": "2019-04-05"
   
-    }
-  ]
+  //   }
+  // ]
 
-  agreementcontroller.biddingdata(data,req,res);
   agreementcontroller.getagreementbids(req,res);
 
   });
@@ -193,43 +193,42 @@ router.get('/offers', function(req, res,next){
 
 
 router.get('/Openservices',ensureAuthenticated, (req, res) => {
-//   async function getPosts(){
-//    const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
-//    const data = await posts.json()
-//    res.render('openservice',{
-//    title:"Openservices",
-//    details: data
-//  })
-//   }
-//   getPosts()
+  async function saveopenservicerequests(){
+   const posts = await fetch("https://provider-management-platform-server.onrender.com/agreementsDetails");
+   const data = await posts.json()
+   openservicecontroller.openservicedata(data,req,res);
+   
+  }
+  saveopenservicerequests();
+  openservicecontroller.getopenservicerequests(req,res);
 
-data = [
-  {
-    "_id":1,
-    "PositionName":"Backend Developer",
-    "agreementsId": "63836197a3f23cddb9e961fd",
-    "Onsite":"950",
-    "remote":"900",
-    "Onsite Percentage":"100%",
-    "validateFrom":"2015-12-01",
-    "validateUntil": "2019-04-05"
+// data = [
+//   {
+//     "_id":1,
+//     "PositionName":"Backend Developer",
+//     "agreementsId": "63836197a3f23cddb9e961fd",
+//     "Onsite":"950",
+//     "remote":"900",
+//     "Onsite Percentage":"100%",
+//     "validateFrom":"2015-12-01",
+//     "validateUntil": "2019-04-05"
 
-  },
-  {
-    "_id":2,
-    "PositionName":"Frontend Developer",
-    "agreementsId": "63836197a3f23cddb9e961fd",
-    "Onsite":"1000",
-    "remote":"1100",
-    "Onsite Percentage":"80%",
-    "validateFrom":"2015-12-01",
-    "validateUntil": "2019-04-05"
+//   },
+//   {
+//     "_id":2,
+//     "PositionName":"Frontend Developer",
+//     "agreementsId": "63836197a3f23cddb9e961fd",
+//     "Onsite":"1000",
+//     "remote":"1100",
+//     "Onsite Percentage":"80%",
+//     "validateFrom":"2015-12-01",
+//     "validateUntil": "2019-04-05"
 
-  }]
-  res.render('openservice',{
-        title:"Openservices",
-        details: data
-      });
+//   }]
+//   res.render('openservice',{
+//         title:"Openservices",
+//         details: data
+//       });
  
 })
 router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){

@@ -6,7 +6,7 @@ var userSchemas = new Schema({
     offerid: { type: String,  required: [true, 'ID name must be provided'] },
     name: { type: String,  required: [true, ' name must be provided'] },
     type: { type: String,  required: [true, 'type name must be provided'] },
-    dailyrateindication: { type: String,  required: [true, 'dailyrateindication must be provided'] },
+    dailyrateindication: { type: String},
     status: { type: String,  required: [true, 'status must be provided'] },
     cycle: { type: String , required: [true, 'cycle  must be provided']},
     startTime: { type: String,  required: [true, 'start time must be provided'] },

@@ -22,10 +22,10 @@ const provider_b = mongoose.connection.useDb('provider-b');
 const provider_c = mongoose.connection.useDb('provider-c');
 const provider_d = mongoose.connection.useDb('provider-d');
 
-const Provider_A_Agreement_Bids = provider_a.model('Bids', userSchemas);
-const Provider_B_Agreement_Bids = provider_b.model('Bids', userSchemas);
-const Provider_C_Agreement_Bids = provider_c.model('Bids', userSchemas);
-const Provider_D_Agreement_Bids = provider_d.model('Bids', userSchemas);
+const Provider_A_Openservice_Requests = provider_a.model('Openservicerequests', userSchemas);
+const Provider_B_Openservice_Requests = provider_b.model('Openservicerequests', userSchemas);
+const Provider_C_Openservice_Requests = provider_c.model('Openservicerequests', userSchemas);
+const Provider_D_Openservice_Requests = provider_d.model('Openservicerequests', userSchemas);
 
 
-module.exports = {Provider_A_Agreement_Bids,Provider_B_Agreement_Bids,Provider_C_Agreement_Bids,Provider_D_Agreement_Bids};
+module.exports = {Provider_A_Openservice_Requests,Provider_B_Openservice_Requests,Provider_C_Openservice_Requests,Provider_D_Openservice_Requests};
