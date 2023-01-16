@@ -262,6 +262,7 @@ const saveagreements =  (agrements,req,res) => {
 
 const biddingdata =  (agrements,req,res) => {
    
+      console.log("bid-test");
       const id =req.session.passport.user;
       try{
         const id =req.session.passport.user;
@@ -272,41 +273,45 @@ const biddingdata =  (agrements,req,res) => {
         if (data) 
         {
 
-            agrements.forEach(function (agreement) {   
-                var document = {
-                    positionid :  agreement._id,
-                    positionname :  agreement.name,
-                    agreementid:  agreement.agreementsId,
-                    type:agreement.type,
-                    biddingstatus: "pending"
-                  };
+          agrements.forEach(function (agreement) {   
+            var document = {
+                positionid :  agreement._id,
+                positionname :  agreement.name,
+                agreementid:  agreement.agreementsId,
+                type:agreement.type,
+                biddingstatus: "pending"
+              };
 
-                  Agreements.Provider_A_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              Agreements.Provider_A_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              .exec((err, data) => {
+
+              if (data)
+              {
+
+                Agreement_Bids.Provider_A_Agreement_Bids.findOne({"positionid":agreement._id}
+                    )
                   .exec((err, data) => {
-                  if (data )
+                console.log("testing bidding-3:",data);
+                
+            
+                  if (!data || data.length==0)
                   {
-                    Agreement_Bids.Provider_A_Agreement_Bids.findOne({"positionid":agreement._id})
-                      .exec((err, data) => {
-                      if (!data || data.length==0)
-                      {
-                        var user = new Agreement_Bids.Provider_A_Agreement_Bids(document); 
-                        console.log("saving user in A");
-                        console.log(user);
-                        user.save(function(error){
-                          if(error){ 
-                            throw error;
-                          }
-                       }); 
-                     
+                    var user = new Agreement_Bids.Provider_A_Agreement_Bids(document); 
+                    console.log("saving user in A");
+                    user.save(function(error){
+                      if(error){ 
+                        throw error;
                       }
-                    
-                    })
-
-                 }
+                   }); 
+                 
+                  }
                 
                 })
-                 
-             })
+              }
+            
+            })
+             
+         })
            
         }
     })
@@ -320,40 +325,45 @@ const biddingdata =  (agrements,req,res) => {
       .exec((err, data) => {
         if (data) 
         {
-            agrements.forEach(function (agreement) {   
-                var document = {
-                    positionid :  agreement._id,
-                    positionname :  agreement.name,
-                    agreementid:  agreement.agreementsId,
-                    type:agreement.type,
-                    biddingstatus: "pending"
-                  };
+          agrements.forEach(function (agreement) {   
+            var document = {
+                positionid :  agreement._id,
+                positionname :  agreement.name,
+                agreementid:  agreement.agreementsId,
+                type:agreement.type,
+                biddingstatus: "pending"
+              };
 
-                  Agreements.Provider_B_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              Agreements.Provider_B_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              .exec((err, data) => {
+
+              if (data)
+              {
+
+                Agreement_Bids.Provider_B_Agreement_Bids.findOne({"positionid":agreement._id}
+                    )
                   .exec((err, data) => {
-                  if (data )
+                console.log("testing bidding-3:",data);
+                
+            
+                  if (!data || data.length==0)
                   {
-                    Agreement_Bids.Provider_B_Agreement_Bids.findOne({"positionid":agreement._id})
-                    .exec((err, data) => {
-                    if (!data || data.length==0)
-                    {
-                      var user = new Agreement_Bids.Provider_B_Agreement_Bids(document); 
-                      console.log("saving user in B");
-                      console.log(user);
-                      user.save(function(error){
-                        if(error){ 
-                          throw error;
-                        }
-                     }); 
-                   
-                    }
-                  
-                  })
-                }
+                    var user = new Agreement_Bids.Provider_B_Agreement_Bids(document); 
+                    console.log("saving user in B");
+                    user.save(function(error){
+                      if(error){ 
+                        throw error;
+                      }
+                   }); 
+                 
+                  }
                 
                 })
-                 
-             })
+              }
+            
+            })
+             
+         })
         }
     })
 
@@ -361,40 +371,45 @@ const biddingdata =  (agrements,req,res) => {
     .exec((err, data) => {
         if (data) 
         {
-            agrements.forEach(function (agreement) {   
-                var document = {
-                    positionid :  agreement._id,
-                    positionname :  agreement.name,
-                    agreementid:  agreement.agreementsId,
-                    type:agreement.type,
-                    biddingstatus: "pending"
-                  };
+          agrements.forEach(function (agreement) {   
+            var document = {
+                positionid :  agreement._id,
+                positionname :  agreement.name,
+                agreementid:  agreement.agreementsId,
+                type:agreement.type,
+                biddingstatus: "pending"
+              };
 
-                  Agreements.Provider_C_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              Agreements.Provider_C_Agreements.findOne({"offerid":agreement.agreementsId,"agreementstatus": "Accepted"})
+              .exec((err, data) => {
+
+              if (data)
+              {
+
+                Agreement_Bids.Provider_C_Agreement_Bids.findOne({"positionid":agreement._id}
+                    )
                   .exec((err, data) => {
-                  if (data )
+                console.log("testing bidding-3:",data);
+                
+            
+                  if (!data || data.length==0)
                   {
-                    Agreement_Bids.Provider_C_Agreement_Bids.findOne({"positionid":agreement._id})
-                    .exec((err, data) => {
-                    if (!data || data.length==0)
-                    {
-                      var user = new Agreement_Bids.Provider_C_Agreement_Bids(document); 
-                      console.log("saving user in C");
-                      console.log(user);
-                      user.save(function(error){
-                        if(error){ 
-                          throw error;
-                        }
-                     }); 
-                   
-                    }
-                  
-                  })
-                }
+                    var user = new Agreement_Bids.Provider_C_Agreement_Bids(document); 
+                    console.log("saving user in C");
+                    user.save(function(error){
+                      if(error){ 
+                        throw error;
+                      }
+                   }); 
+                 
+                  }
                 
                 })
-                 
-             })
+              }
+            
+            })
+             
+         })
         }
     })
 
@@ -636,35 +651,35 @@ const updatebid=  (req, res) => {
         .exec((err, data) => {
         if (data) 
         {
-            console.log("i am in employee provider A");
-            console.log("i am in employee provider A");
-            Agreement_Bids.Provider_A_Agreement_Bids.find({"positionid":req.body.positionid}
-                )
-            .exec((err, data) => {
-                if(data)
-            {
+          console.log("i am in employee provider A");
+          console.log("i am in employee provider A");
+          Agreement_Bids.Provider_A_Agreement_Bids.findOne({"positionid":req.body.positionid}
+              )
+          .exec((err, data) => {
+              if(data)
+          {
 
-                if (data.biddingstatus ==req.body.biddingstatus)
-                {
-                    res.json({message : "Bidding process is already completed.", status : "error"});
-                }
-                else
-                {
-                    Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
-                        {
-                           $set : document
-                        },
-                        {new: true},
-                        (err, user) => {
-                          if (err) throw err;
-                             // Some handle 
-                             console.log("i am in employee provider A completed");
-                          res.json({message : "Data saved successfully.", status : "success"});
-                           }
-                        );
-                }
-            }
-            })
+              if (data.biddingstatus ==req.body.biddingstatus)
+              {
+                  res.json({message : "Bidding process is already completed.", status : "error"});
+              }
+              else
+              {
+                  Agreement_Bids.Provider_A_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
+                      {
+                         $set : document
+                      },
+                      {new: true},
+                      (err, user) => {
+                        if (err) throw err;
+                           // Some handle 
+                           console.log("i am in employee provider A completed");
+                        res.json({message : "Data saved successfully.", status : "success"});
+                         }
+                      );
+              }
+          }
+          })
         }
     })
       }
@@ -677,34 +692,35 @@ const updatebid=  (req, res) => {
       .exec((err, data) => {
         if (data) 
         {
-            console.log("i am in employee provider B");
-            console.log("i am in employee provider B");
-            Agreements.Provider_B_Agreements.findOne({"positionid":req.body.positionid})
-            .exec((err, data) => {
-                if(data)
-            {
+          console.log("i am in employee provider B");
+          console.log("i am in employee provider B");
+          Agreement_Bids.Provider_B_Agreement_Bids.findOne({"positionid":req.body.positionid}
+              )
+          .exec((err, data) => {
+              if(data)
+          {
 
-                if (data.agreementstatus ==req.body.agreementstatus)
-                {
-                    res.json({message : "Agreement is already Accepted or Rejected.", status : "error"});
-                }
-                else
-                {
-                    Agreements.Provider_B_Agreements.findOneAndUpdate({"positionid":req.body.positionid}, 
-                        {
-                           $set : document
-                        },
-                        {new: true},
-                        (err, user) => {
-                          if (err) throw err;
-                             // Some handle 
-                             console.log("i am in employee provider B completed");
-                          res.json({message : "Data saved successfully.", status : "success"});
-                           }
-                        );
-                }
-            }
-            })
+              if (data.biddingstatus ==req.body.biddingstatus)
+              {
+                  res.json({message : "Bidding process is already completed.", status : "error"});
+              }
+              else
+              {
+                  Agreement_Bids.Provider_B_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
+                      {
+                         $set : document
+                      },
+                      {new: true},
+                      (err, user) => {
+                        if (err) throw err;
+                           // Some handle 
+                           console.log("i am in employee provider B completed");
+                        res.json({message : "Data saved successfully.", status : "success"});
+                         }
+                      );
+              }
+          }
+          })
         }
     })
 
@@ -712,34 +728,35 @@ const updatebid=  (req, res) => {
     .exec((err, data) => {
         if (data) 
         {
-            console.log("i am in employee provider C");
-            console.log("i am in employee provider C");
-            Agreements.Provider_C_Agreements.findOne({"positionid":req.body.positionid})
-            .exec((err, data) => {
-                if(data)
-            {
+          console.log("i am in employee provider C");
+          console.log("i am in employee provider C");
+          Agreement_Bids.Provider_C_Agreement_Bids.findOne({"positionid":req.body.positionid}
+              )
+          .exec((err, data) => {
+              if(data)
+          {
 
-                if (data.agreementstatus ==req.body.agreementstatus)
-                {
-                    res.json({message : "Agreement is already Accepted or Rejected.", status : "error"});
-                }
-                else
-                {
-                    Agreements.Provider_C_Agreements.findOneAndUpdate({"positionid":req.body.positionid}, 
-                        {
-                           $set : document
-                        },
-                        {new: true},
-                        (err, user) => {
-                          if (err) throw err;
-                             // Some handle 
-                             console.log("i am in employee provider C completed");
-                          res.json({message : "Data saved successfully.", status : "success"});
-                           }
-                        );
-                }
-            }
-            })
+              if (data.biddingstatus ==req.body.biddingstatus)
+              {
+                  res.json({message : "Bidding process is already completed.", status : "error"});
+              }
+              else
+              {
+                  Agreement_Bids.Provider_C_Agreement_Bids.findOneAndUpdate({"positionid":req.body.positionid}, 
+                      {
+                         $set : document
+                      },
+                      {new: true},
+                      (err, user) => {
+                        if (err) throw err;
+                           // Some handle 
+                           console.log("i am in employee provider C completed");
+                        res.json({message : "Data saved successfully.", status : "success"});
+                         }
+                      );
+              }
+          }
+          })
         }
     })
 
