@@ -13,6 +13,7 @@ var employeecontroller = require('../controllers/employee');
 var agreementcontroller = require('../controllers/agreements');
 var offercontroller = require('../controllers/offer');
 var openservicecontroller = require('../controllers/openservice');
+var providercontroller = require('../controllers/providers');
 const { check, validationResult } = require('express-validator/check');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
@@ -190,6 +191,11 @@ router.get('/Agreementbids', function(req, res,next){
 router.get('/offers', function(req, res,next){
   offercontroller.getroffers(req,res);
     });
+
+router.get('/getproviders', function(req, res,next){
+  providercontroller.providers(req,res);
+    });
+
 
 
 router.get('/Openservices',ensureAuthenticated, (req, res) => {
