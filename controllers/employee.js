@@ -182,4 +182,156 @@ User.Provider_D.findById(id)
   }
 };
 
-module.exports = {addemployee,GetEmployeeData};
+
+const saveemployeestatus =  (offerstatus,req,res) => {
+  const id =req.session.passport.user;
+  try{
+    const id =req.session.passport.user;
+
+
+    User.Provider_A.findById(id)
+    .exec((err, data) => {
+    if (data) 
+    {
+      offerstatus.forEach(function (offer) {   
+            var document = {
+              status: offer.status
+              };
+
+              Employee.Provider_A_employee.findById(offer.employeeid)
+              .exec((err, data) => {
+              if (data)
+              {
+                Employee.Provider_A_employee.findByIdAndUpdate(offer.employeeid, 
+                {
+                   $set : document
+                },
+                {new: true},
+                (err, user) => {
+                  if (err) throw err;
+                     // Some handle 
+                     console.log("i am in employee provider A completed");
+                   }
+                );
+            }
+            
+            })
+             
+         })
+       
+    }
+})
+  }
+  catch(error){
+    console.log(error.message);
+  }
+
+
+  User.Provider_B.findById(id)
+  .exec((err, data) => {
+    if (data) 
+    {
+      offerstatus.forEach(function (offer) {   
+        var document = {
+          status: offer.status
+          };
+
+          Employee.Provider_B_employee.findById(offer.employeeid)
+          .exec((err, data) => {
+          if (data)
+          {
+            Employee.Provider_B_employee.findByIdAndUpdate(offer.employeeid, 
+            {
+               $set : document
+            },
+            {new: true},
+            (err, user) => {
+              if (err) throw err;
+                 // Some handle 
+                 console.log("i am in employee provider B completed");
+               }
+            );
+        }
+        
+        })
+         
+     })
+   
+    }
+})
+
+User.Provider_C.findById(id)
+.exec((err, data) => {
+    if (data) 
+    {
+      offerstatus.forEach(function (offer) {   
+        var document = {
+          status: offer.status
+          };
+
+          Employee.Provider_C_employee.findById(offer.employeeid)
+          .exec((err, data) => {
+          if (data)
+          {
+            Employee.Provider_C_employee.findByIdAndUpdate(offer.employeeid, 
+            {
+               $set : document
+            },
+            {new: true},
+            (err, user) => {
+              if (err) throw err;
+                 // Some handle 
+                 console.log("i am in employee provider C completed");
+               }
+            );
+        }
+        
+        })
+         
+     })
+   
+    }
+})
+
+User.Provider_D.findById(id)
+  .exec((err, data) => {
+    if (data) 
+    {
+
+      offerstatus.forEach(function (offer) {   
+        var document = {
+          status: offer.status
+          };
+          console.log(offer.employee_name,offer.status);
+
+          Employee.Provider_D_employee.findById(offer.employeeid)
+          .exec((err, data) => {
+          if (data)
+          {
+            console.log("offer test")
+            console.log(data.employee_name,data.status);
+            Employee.Provider_D_employee.findByIdAndUpdate(offer.employeeid, 
+            {
+               $set : document
+            },
+            {new: true},
+            (err, user) => {
+              if (err) throw err;
+                 // Some handle 
+                 console.log("i am in employee provider D completed");
+               }
+            );
+        }
+        
+        })
+         
+     })
+   
+
+    }
+})
+
+
+
+};
+module.exports = {addemployee,GetEmployeeData,saveemployeestatus};

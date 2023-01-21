@@ -107,6 +107,7 @@ $(function(){
                         errors = errors+ '</ul>';
                         $("#msgDiv").html(errors).show();
                     }else{
+                        alert("Sucessfully Registered the user, click ok to go to login page");
                         window.location.href = "/";
                     }
                 }
@@ -208,6 +209,7 @@ $(function(){
                         errors = errors+ '</ul>';
                         $("#msgDiv").html(errors).show();
                     }else{
+                        alert("Sucessfully Updated the user, click ok to go to dashboard");
                         window.location.href = "/dashboard";
                     }
                 }
@@ -247,6 +249,7 @@ $(function(){
 
                         alert(data.message);
                     }else{
+                        alert("Sucessfully Accepted the agreement, click ok to go to dashboard");
                         window.location.href = "/dashboard";
   
                     }
@@ -287,6 +290,7 @@ $(function(){
 
                         alert(data.message);
                     }else{
+                        alert("Sucessfully Rejected the agreement, click ok to go to dashboard");
                         window.location.href = "/dashboard";
   
                     }
@@ -324,6 +328,7 @@ $(function(){
 
                         alert(data.message);
                     }else{
+                        alert("Sucessfully Bidded the agreement, click ok to go to dashboard");
                         window.location.href = "/dashboard";
   
                     }
@@ -366,6 +371,7 @@ $(function(){
                         errors = errors+ '</ul>';
                         $("#msgDiv").html(errors).show();
                     }else{
+                        alert("Sucessfully Added the Employee, click ok to go to dashboard");
                         window.location.href = "/dashboard";
                     }
                 }
@@ -424,6 +430,7 @@ $(function(){
                         errors = errors + '</ul>';
                         $("#msgDiv").html(errors).show();
                     } else {
+                        alert("Sucessfully Submitted the offer, click ok to go to dashboard");
                         window.location.href = "/dashboard";
                     }
                 }

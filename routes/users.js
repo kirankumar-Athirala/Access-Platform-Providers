@@ -157,7 +157,15 @@ router.get('/offerEmployee', ensureAuthenticated, function(req, res,next){
   router.get('/Employeestatus', ensureAuthenticated, function(req, res,next){
     // const data = JSON.stringify(req.query)
     // console.log(data)
-    employeecontroller.GetEmployeeData(req,res);
+
+    async function getofferstatus(req,res){
+      const posts = await fetch("https://provider-management-platform-server.onrender.com/selectedProfile");
+      const data = await posts.json();
+      employeecontroller.saveemployeestatus(data,req,res)
+     }
+     getofferstatus(req,res);
+     employeecontroller.GetEmployeeData(req,res);
+    
     // res.render('offerEmployee', {
     //   title: 'offerEmployee',
     //   data : req.query.id

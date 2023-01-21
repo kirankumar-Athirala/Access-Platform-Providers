@@ -211,7 +211,8 @@ const GetEmployeeData =  (req, res) => {
     .exec((err, data) => {
       if (data) 
       {
-        Employee.Provider_A_employee.find({"status": "Available"})
+        
+        Employee.Provider_A_employee.find({ $or: [{"status": "Available"}, {"status": "reject"}] })
         
        .exec((err,data)=>{
         if(data){
@@ -231,7 +232,7 @@ const GetEmployeeData =  (req, res) => {
   .exec((err, data) => {
     if (data) 
     {
-      Employee.Provider_B_employee.find({"status": "Available"})
+      Employee.Provider_B_employee.find({ $or: [{"status": "Available"}, {"status": "reject"}] })
       
      .exec((err,data)=>{
       if(data){
@@ -250,7 +251,7 @@ User.Provider_C.findById(id)
 .exec((err, data) => {
   if (data) 
   {
-    Employee.Provider_C_employee.find({"status": "Available"})
+    Employee.Provider_C_employee.find({ $or: [{"status": "Available"}, {"status": "reject"}] })
     
    .exec((err,data)=>{
     if(data){
@@ -268,7 +269,7 @@ User.Provider_D.findById(id)
 .exec((err, data) => {
   if (data) 
   {
-    Employee.Provider_D_employee.find({"status": "Available"})
+    Employee.Provider_D_employee.find({ $or: [{"status": "Available"}, {"status": "reject"}] })
     
    .exec((err,data)=>{
     if(data){
