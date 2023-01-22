@@ -13,7 +13,7 @@ var userSchemas = new Schema({
     rate: { type: String,  required: [true, 'Provider id must be provided'] },
     notes: { type: String,  required: [true, 'Provider id must be provided'] },
     dateuntil: { type: String,  required: [true, 'Provider id must be provided'] },
-    document: { type: String,  required: [true, 'Provider id must be provided'] },
+    document: { data: Buffer, contentType: String},
     status: { type: String },
 });
 

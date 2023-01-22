@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 //var User      = mongoose.model('Users');
 var User = require('../models/User');
@@ -404,7 +406,7 @@ check('username','username cannot be left blank')
 });
 
 
-router.post('/addemployee',[ 
+router.post('/addemployee',upload.single('file'),[ 
   check('employee_name','Please  provide Employee Name')
   .isLength({ min: 1 }),
   check('provider_name','Please  provide provider person')
@@ -521,8 +523,6 @@ router.post('/addoffer', [
   .isLength({ min: 1 }),
   check('dateuntil','Please provide dateuntil')
   .isLength({ min: 1 }),
-  check('document','Please provide document')
-  .isLength({ min: 1 })
    
  ], function(req, res, next) {
 

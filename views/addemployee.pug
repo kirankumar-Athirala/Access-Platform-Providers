@@ -4,19 +4,19 @@ block content
    .container
       h1.text-center.top-buffer Access Management Platform 
       h2.text-center.top-buffer Add New Employee
-      form.form-horizontal(role="form", method="post")
+      form.form-horizontal(role="form", action="/users/addemployee" method="post"  enctype="multipart/form-data")
         .form-group
           .alert.alert-danger(role='alert', id="msgDiv")
         .form-group
           label.col-sm-6.control-label(for="employeename") 
            strong Employee Name
           .col-sm-9
-            input#employeename.form-control(type="text" placeholder="Employee Name" autofocus="" value="")
+            input#employeename.form-control(type="text" name="employee_name" placeholder="Employee Name" autofocus="" value="")
         .form-group
           label.col-sm-6.control-label(for="providername") 
            strong Provider Name
           .col-sm-9
-            select#providername.form-control(name="provider")
+            select#providername.form-control(name="provider_name")
               option(value='') Please Select
               option A
               option B
@@ -26,22 +26,22 @@ block content
           label.col-sm-6.control-label(for="contactperson") 
            strong Contact Person
           .col-sm-9
-            input#CPerson.form-control(type="text" placeholder="Contact Person")
+            input#CPerson.form-control(type="text" name="contactperson" placeholder="Contact Person")
         .form-group
           label.col-sm-6.control-label(for="External Person") 
            strong External Person
           .col-sm-9
-            input#Eperson.form-control(type="Text" placeholder="External Person")
+            input#Eperson.form-control(type="Text" name="externalperson" placeholder="External Person")
             .form-group
           label.col-sm-3.control-label(for="Daily Rates") 
            strong Daily Rates
           .col-sm-9
-            input#rate.form-control(type="Text" placeholder="Daily Rates")
+            input#rate.form-control(type="Text" name="rate" placeholder="Daily Rates")
         .form-group
           label.col-sm-9.control-label(for="dateuntil") 
            strong Date Until
           .col-sm-9
-            input#dateuntil.form-control(type="date")
+            input#dateuntil.form-control(type="date" name="dateuntil")
         .form-group
           label.col-sm-3.control-label(for="Notes") 
            strong Notes
@@ -51,7 +51,7 @@ block content
           label.col-sm-3.control-label(for="documents") 
            strong Documents
           .col-sm-9
-            input#document.form-control(type="file")
+            input#document.form-control(type="file"  name="file")
         .form-group
           .col-sm-9.col-sm-offset-3
             button#addemployee.btn.btn-primary.btn-block(type="e") Save

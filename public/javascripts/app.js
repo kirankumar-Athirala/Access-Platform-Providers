@@ -337,47 +337,47 @@ $(function(){
         }
     });
 
-    $("#addemployee").on('click', function(event){
-        event.preventDefault();
-        var employeename   = $("#employeename").val();
-        var providername   = $("#providername").val();
-        var contactperson  = $("#CPerson").val();
-        var externalperson   = $("#Eperson").val();
-        var rate  = $("#rate").val();
-        var dateuntil = $("#dateuntil").val();
-        var notes    = $("#notes").val();
-        var document     = $('#document').val(); 
+    // $("#addemployee").on('click', function(event){
+    //     event.preventDefault();
+    //     var employeename   = $("#employeename").val();
+    //     var providername   = $("#providername").val();
+    //     var contactperson  = $("#CPerson").val();
+    //     var externalperson   = $("#Eperson").val();
+    //     var rate  = $("#rate").val();
+    //     var dateuntil = $("#dateuntil").val();
+    //     var notes    = $("#notes").val();
+    //     var document     = $('#document').val(); 
        
 
-        if(!employeename|| !providername || !contactperson || !externalperson || !rate || !dateuntil || !notes){ 
-            $("#msgDiv").show().html("All fields are required check.");
-        } 
-        else{ 
-            console.log("i am in before ajax");
-            $.ajax({
-                url: "/users/addemployee",
-                method: "POST",
-                data: {employee_name: employeename,provider_name: providername, contactperson: contactperson, externalperson: externalperson, rate: rate, notes: notes,dateuntil:dateuntil,document:document}
-            }).done(function( data ) {
+    //     if(!employeename|| !providername || !contactperson || !externalperson || !rate || !dateuntil || !notes){ 
+    //         $("#msgDiv").show().html("All fields are required check.");
+    //     } 
+    //     else{ 
+    //         console.log("i am in before ajax");
+    //         $.ajax({
+    //             url: "/users/addemployee",
+    //             method: "POST",
+    //             data: {employee_name: employeename,provider_name: providername, contactperson: contactperson, externalperson: externalperson, rate: rate, notes: notes,dateuntil:dateuntil,document:document}
+    //         }).done(function( data ) {
 
-                if ( data ) {
-                    if(data.status == 'error'){
+    //             if ( data ) {
+    //                 if(data.status == 'error'){
 
-                        var errors = '<ul>';
-                        $.each( data.message, function( key, value ) {
-                            errors = errors +'<li>'+value.msg+'</li>';
-                        });
+    //                     var errors = '<ul>';
+    //                     $.each( data.message, function( key, value ) {
+    //                         errors = errors +'<li>'+value.msg+'</li>';
+    //                     });
 
-                        errors = errors+ '</ul>';
-                        $("#msgDiv").html(errors).show();
-                    }else{
-                        alert("Sucessfully Added the Employee, click ok to go to dashboard");
-                        window.location.href = "/dashboard";
-                    }
-                }
-            });
-        }
-    });
+    //                     errors = errors+ '</ul>';
+    //                     $("#msgDiv").html(errors).show();
+    //                 }else{
+    //                     alert("Sucessfully Added the Employee, click ok to go to dashboard");
+    //                     window.location.href = "/dashboard";
+    //                 }
+    //             }
+    //         });
+    //     }
+    // });
 
 
     // final post start
@@ -393,11 +393,11 @@ $(function(){
         var rate = $("#rate").val();
         var notes = $("#notes").val();
         var dateuntil = $("#dateuntil").val();
-        var document = $('#document').val();
+
         
 
 
-        if (!employeeid || !positionid || !agreementsid || !employee_name || !provider_name || !contactperson || !externalperson||!rate || !notes || !dateuntil || !document) {
+        if (!employeeid || !positionid || !agreementsid || !employee_name || !provider_name || !contactperson || !externalperson||!rate || !notes || !dateuntil) {
             $("#msgDiv").show().html("All fields are required check.");
         } else {
             console.log("i am in before ajax");
@@ -415,7 +415,6 @@ $(function(){
                     rate: rate,
                     notes: notes,
                     dateuntil: dateuntil,
-                    document: document,
                 }
             }).done(function (data) {
 
