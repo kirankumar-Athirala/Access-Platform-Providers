@@ -6,6 +6,7 @@ var userSchemas = new Schema({
     positionid: { type: String,  required: [true, 'Position name must be provided'] },
     positionname: { type: String,  required: [true, 'Position name must be provided'] },
     agreementid: { type: String,  required: [true, ' Agreement ID must be provided'] },
+    agreementName: { type: String,  required: [true, ' Agreement Name must be provided'] },
     level: { type: String},
     type: { type: String,  required: [true, 'level must be provided'] },
     onsite: { type: String},

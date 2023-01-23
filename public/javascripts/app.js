@@ -305,6 +305,7 @@ $(function(){
         var positionname = $("#positionname").val();
         var positionid = $("#positionid").val();
         var agreementid = $("#agreementid").val();
+        var agreementname = $("#agreementname").val();
         var level = $("#level").val();
         var onsite = $("#onsite").val();
         var remote = $("#remote").val();
@@ -312,7 +313,7 @@ $(function(){
         var validfrom = $("#validfrom").val();
         var vailduntil = $("#vailduntil").val();
         var biddingstatus = $("#biddingstatus").val();
-        if( !positionname || !agreementid || !positionid || !level || !onsite || !remote ||!onsiteper || !validfrom || !vailduntil || !biddingstatus ){ 
+        if( !positionname || !agreementid || !agreementname || !positionid || !level || !onsite || !remote ||!onsiteper || !validfrom || !vailduntil || !biddingstatus ){ 
             console.log("didnt get data")
             $("#msgDiv").show().html("All fields are required check.");  
         } 
@@ -320,7 +321,7 @@ $(function(){
             $.ajax({
                 url: "/users/bidagreement",
                 method: "POST",
-                data: {positionname: positionname,positionid:positionid,agreementid: agreementid,level: level,onsite:onsite,remote: remote,onsiteper:onsiteper,validfrom:validfrom, vailduntil:vailduntil,biddingstatus: "Bidded" }
+                data: {positionname: positionname,positionid:positionid,agreementid: agreementid,agreementname: agreementname,level: level,onsite:onsite,remote: remote,onsiteper:onsiteper,validfrom:validfrom, vailduntil:vailduntil,biddingstatus: "Bidded" }
             }).done(function( data ) {
 
                 if ( data ) {
@@ -386,6 +387,7 @@ $(function(){
         var employeeid = $("#employeeid").val();
         var positionid = $("#positionid").val();
         var agreementsid = $("#agreementsid").val();
+        var agreementsname = $("#agreementsname").val();
         var employee_name = $("#employee_name").val();
         var provider_name = $("#provider_name").val();
         var contactperson = $("#contactperson").val();
@@ -397,7 +399,7 @@ $(function(){
         
 
 
-        if (!employeeid || !positionid || !agreementsid || !employee_name || !provider_name || !contactperson || !externalperson||!rate || !notes || !dateuntil) {
+        if (!employeeid || !positionid || !agreementsid || !agreementsname || !employee_name || !provider_name || !contactperson || !externalperson||!rate || !notes || !dateuntil) {
             $("#msgDiv").show().html("All fields are required check.");
         } else {
             console.log("i am in before ajax");
@@ -408,6 +410,7 @@ $(function(){
                     employeeid: employeeid,
                     positionid: positionid,
                     agreementsid: agreementsid,
+                    agreementsname:agreementsname,
                     employee_name: employee_name,
                     provider_name: provider_name,
                     contactperson: contactperson,

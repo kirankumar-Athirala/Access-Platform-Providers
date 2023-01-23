@@ -17,6 +17,7 @@ table(style='width:100%')
   tr
     th position ID
     th agreements ID
+    th agreements Name
     th Name 
     th Role
     th ADD
@@ -24,9 +25,10 @@ table(style='width:100%')
     tr
     td #{detail.positionid}
     td #{detail.agreementid}
+    td #{detail.agreementName}
     td #{detail.positionname}
     td 
      img(src=detail.type alt='login' style='width:100px; height:100px;')
     td
      li
-      a(href=`/users/offerEmployee?positionid=${detail.positionid}&agreementsid=${detail.agreementid}`) offerEmployee
+      a(href=`/users/offerEmployee?positionid=${detail.positionid}&agreementsid=${detail.agreementid}&agreementName=${detail.agreementName}`) offerEmployee

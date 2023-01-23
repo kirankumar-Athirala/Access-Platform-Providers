@@ -6,6 +6,7 @@ var userSchemas = new Schema({
     employeeid: { type: String,  required: [true, 'Employee name must be provided'] },
     positionid: { type: String,  required: [true, 'Provider email must be provided'] },
     agreementsid: { type: String,  required: [true, 'Provider id must be provided'] },
+    agreementName: { type: String,  required: [true, ' Agreement Name must be provided'] },
     employee_name: { type: String,  required: [true, 'Provider id must be provided'] },
     provider_name: { type: String,  required: [true, 'Provider id must be provided'] },
     contactperson: { type: String,  required: [true, 'Provider id must be provided'] },

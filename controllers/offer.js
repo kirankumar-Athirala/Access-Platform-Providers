@@ -267,6 +267,7 @@ const addoffer =  (req, res) => {
                 Document_A.employeeid =  req.body.employeeid,
                 Document_A.positionid = req.body.positionid,
                 Document_A.agreementsid = req.body.agreementsid,
+                Document_A.agreementName = req.body.agreementsname,
                 Document_A.employee_name = req.body.employee_name;
                 Document_A.provider_name =  req.body.provider_name; 
                 Document_A.contactperson =  req.body.contactperson; 
@@ -320,6 +321,7 @@ const addoffer =  (req, res) => {
               Document_B.employeeid =  req.body.employeeid,
               Document_B.positionid = req.body.positionid,
               Document_B.agreementsid = req.body.agreementsid,
+              Document_B.agreementName = req.body.agreementsname,
               Document_B.employee_name = req.body.employee_name;
               Document_B.provider_name =  req.body.provider_name; 
               Document_B.contactperson =  req.body.contactperson; 
@@ -368,6 +370,7 @@ const addoffer =  (req, res) => {
               Document_C.employeeid =  req.body.employeeid,
               Document_C.positionid = req.body.positionid,
               Document_C.agreementsid = req.body.agreementsid,
+              Document_C.agreementName = req.body.agreementsname,
               Document_C.employee_name = req.body.employee_name;
               Document_C.provider_name =  req.body.provider_name; 
               Document_C.contactperson =  req.body.contactperson; 
@@ -416,6 +419,7 @@ const addoffer =  (req, res) => {
               Document_D.employeeid =  req.body.employeeid,
               Document_D.positionid = req.body.positionid,
               Document_D.agreementsid = req.body.agreementsid,
+              Document_D.agreementName = req.body.agreementsname,
               Document_D.employee_name = req.body.employee_name;
               Document_D.provider_name =  req.body.provider_name; 
               Document_D.contactperson =  req.body.contactperson; 

@@ -278,6 +278,7 @@ const biddingdata =  (agrements,req,res) => {
                 positionid :  agreement._id,
                 positionname :  agreement.name,
                 agreementid:  agreement.agreementsId,
+                agreementName:agreement.agreementName,
                 type:agreement.type,
                 biddingstatus: "pending"
               };
@@ -330,6 +331,7 @@ const biddingdata =  (agrements,req,res) => {
                 positionid :  agreement._id,
                 positionname :  agreement.name,
                 agreementid:  agreement.agreementsId,
+                agreementName:agreement.agreementName,
                 type:agreement.type,
                 biddingstatus: "pending"
               };
@@ -376,6 +378,7 @@ const biddingdata =  (agrements,req,res) => {
                 positionid :  agreement._id,
                 positionname :  agreement.name,
                 agreementid:  agreement.agreementsId,
+                agreementName:agreement.agreementName,
                 type:agreement.type,
                 biddingstatus: "pending"
               };
@@ -422,6 +425,7 @@ const biddingdata =  (agrements,req,res) => {
                     positionid :  agreement._id,
                     positionname :  agreement.name,
                     agreementid:  agreement.agreementsId,
+                    agreementName:agreement.agreementName,
                     type:agreement.type,
                     biddingstatus: "pending"
                   };
